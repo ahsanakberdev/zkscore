@@ -212,26 +212,26 @@ function LandingPage() {
             <div className="">
               <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
                 <div className="">
-                  <Image src="/Neteller.png" alt="Partner 3" width="161" height="100" />
+                  <Image src="/Neteller.png" alt="Neteller" width="161" height="100" />
                 </div>
                 <div className="">
-                  <Image src="/Skrill.png" alt="Partner 3" width="161" height="100" />
+                  <Image src="/Skrill.png" alt="Skrill" width="161" height="100" />
                 </div>
                 <div className="">
-                  <Image src="/ApplePay.png" alt="Partner 3" width="161" height="100" />
+                  <Image src="/ApplePay.png" alt="Apple Pay" width="161" height="100" />
                 </div>
               </div>
             </div>
             <div className="">
               <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
                 <div className="">
-                  <Image src="/AstroPay.png" alt="Partner 3" width="161" height="100" />
+                  <Image src="/AstroPay.png" alt="Astro Pay" width="161" height="100" />
                 </div>
                 <div className="">
-                  <Image src="/visaDebit.png" alt="Partner 3" width="161" height="100" />
+                  <Image src="/VisaDebit.png" alt="Visa Debit" width="161" height="100" />
                 </div>
                 <div className="">
-                  <Image src="/PayPal.png" alt="Partner 3" width="161" height="100" />
+                  <Image src="/PayPal.png" alt="PayPal" width="161" height="100" />
                 </div>
               </div>
             </div>

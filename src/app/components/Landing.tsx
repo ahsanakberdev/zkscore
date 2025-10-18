@@ -3,6 +3,85 @@ import React, { useState, useEffect } from 'react';
 import { motion, useScroll } from 'framer-motion';
 import Image from 'next/image';
 
+
+const features = [
+  {
+    title: "Capital Efficiency",
+    description: "Improve lending and borrowing mechanics in DeFi.",
+    image: '/chart-frame.png',
+  },
+  {
+    title: "Sybil Resistance",
+    description: "Prevent gaming of rewards and airdrops.",
+    image: '/chart-frame.png',
+  },
+  {
+    title: "Wallet Verification",
+    description:
+      "Offer a zk-proof of wallet alternative to KYC-style verification.",
+    image: '/chart-frame.png',
+  },
+  {
+    title: "Reputation-Based Identity",
+    description: "Serve as a reputation passport across Web3 ecosystems.",
+    image: '/chart-frame.png',
+  },
+];
+
+const data = [
+  {
+    title: "Wallet Age",
+    description: "Older wallets demonstrate long-term commitment to DeFi.",
+    image: '/data-frame.png',
+    btnText: "1.5 score per bridge",
+  },
+  {
+    title: "DEX Trading",
+    description:
+      "Trade on decentralized exchanges to build trading reputation.",
+    image: '/data-frame.png',
+    btnText: "1.5 score per bridge",
+  },
+  {
+    title: "Liquidity",
+    description: "Provide liquidity to earn fees and build reputation.",
+    image: '/data-frame.png',
+    btnText: "1.5 score per bridge",
+  },
+  {
+    title: "Lending",
+    description: "Supply liquidity and borrow assets responsibly.",
+    image: '/data-frame.png',
+    btnText: "1.5 score per bridge",
+  },
+  {
+    title: "NFT Trading",
+    description: "Trade NFTs and participate in digital asset markets.",
+    image: '/data-frame.png',
+    btnText: "1.5 score per bridge",
+  },
+
+  {
+    title: "Bridge",
+    description: "Move assets across different blockchain networks.",
+    image: '/data-frame.png',
+    btnText: "1.5 score per bridge",
+  },
+  {
+    title: "Governance",
+    description: "Participate in protocol governance and voting.",
+    image: '/data-frame.png',
+    btnText: "1.5 score per bridge",
+  },
+  {
+    title: "Staking",
+    description: "Stake tokens and participate in network security.",
+    image: '/data-frame.png',
+    btnText: "1.5 score per bridge",
+  },
+];
+
+
 export default function HomePage() {
   return <LandingPage />;
 }
@@ -24,32 +103,22 @@ function LandingPage() {
 
   return (
     <>
-    <div className="relative bg-[#F1F1F1] p-4">
+    <div className="relative bg-black">
 
       {/* Hero Section - Dark Theme */}
-      <section className="relative bg-[#1A1A1A] pt-24 lg:pt-32 overflow-hidden max-w-[1440px] mx-auto rounded-3xl">
-
+      <section className="relative pt-24 lg:pt-32 overflow-hidden">
         <motion.header 
-          className={`fixed left-0 right-0 z-50 transition-all duration-300  max-w-[1440px] mx-auto rounded-3xl ${
-            headerStyle === 'solid' 
-              ? 'bg-[#F1F1F1]/80 backdrop-blur-md top-0' 
-              : 'bg-transparent backdrop-blur-md top-4'
-          }`}
+          className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent backdrop-blur-md `}
           initial={{ y: -100 }}
           animate={{ y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="px-4 sm:px-6 lg:px-8">
+          {/* ✅ Use a centered container with max width 1280px */}
+          <div className="max-w-screen-xl mx-auto px-4">
             <div className="flex items-center justify-between h-24">
+              
               {/* Logo */}
-              <div className="flex items-center gap-x-2">
-                <Image src="/favicon-logo.svg" alt="logo" width="48" height="26" />
-                <span className={`text-2xl font-bold font-spaceGrotesk ${
-                  headerStyle === 'solid' 
-                    ? 'text-gray-900' 
-                    : 'text-white '
-                }`}>zkScore</span>
-              </div>
+              <Image src="/logo.png" alt="logo" width="160" height="64" />
 
               {/* Navigation */}
               <motion.nav 
@@ -58,386 +127,337 @@ function LandingPage() {
                 transition={{ duration: 0.3 }}
                 className="hidden md:flex items-center gap-x-14 font-spaceGrotesk"
               >
-                <a href="#" className={`transition-colors ${
-                  headerStyle === 'solid' 
-                    ? 'text-gray-700 hover:text-black' 
-                    : 'text-gray-300 hover:text-white'
-                }`}>Developers</a>
-                <a href="/docs" className={`transition-colors ${
-                  headerStyle === 'solid' 
-                    ? 'text-gray-700 hover:text-black' 
-                    : 'text-gray-300 hover:text-white'
-                }`}>Documentation</a>
-                <a href="/" className={`transition-colors ${
-                  headerStyle === 'solid' 
-                    ? 'text-gray-700 hover:text-black' 
-                    : 'text-gray-300 hover:text-white'
-                }`}>Explorer</a>
-                <a href="#" className={`transition-colors ${
-                  headerStyle === 'solid' 
-                    ? 'text-gray-700 hover:text-black' 
-                    : 'text-gray-300 hover:text-white'
-                }`}>FAQ</a>
-              </motion.nav>
+                <a href="#" className={`transition-colors text-gray-300 hover:text-white`}>Developers</a>
 
-              {/* Launch App Button */}
-              <div className="flex items-center gap-x-4">
-                <a
-                  href="https://fresh-dashboard-zeta.vercel.app/dashboard"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-gradient-to-r from-[#83FF8F] to-[#CC7FF0] text-black px-7 py-4 rounded-3xl font-semibold transition-colors inline-block font-spaceGrotesk text-lg"
-                >
-                  Launch App
-                </a>
-              </div>
+                <a href="/docs" className={`transition-colors text-gray-300 hover:text-white`}>Documentation</a>
+
+                <a href="/" className={`transition-colors text-gray-300 hover:text-white`}>Explorer</a>
+
+                <a href="#" className={`transition-colors text-gray-300 hover:text-white`}>FAQ</a>
+              </motion.nav>
             </div>
           </div>
         </motion.header>
 
-        <div className="relative z-10 px-4 sm:px-6 lg:px-12 pt-20">
-          <div className="flex items-end">
-            {/* Left Side - Content */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-left"
-            >
-              <h1 className="text-5xl lg:text-[80px] font-normal text-white mb-10 leading-tight font-spaceGrotesk">
-                <span className="font-bold">Wallet{' '}</span>
-                reputation, {' '}
-                <span className="text-white">reimagined with</span>{' '}
-                <span className="font-bold">
-                  ZK
-                </span>
-              </h1>
+      </section>
 
-              <a
-                href="https://fresh-dashboard-zeta.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-gradient-to-r from-[#83FF8F] to-[#CC7FF0] text-black px-8 py-4 rounded-3xl font-semibold transition-colors inline-block text-center font-spaceGrotesk text-lg"
-              >
-                Create an ID
-              </a>
+        {/* Banner Section */}
+      <section className="relative text-white overflow-hidden">
+
+        <div className="relative container max-w-screen-xl mx-auto px-6 py-20">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            {/* Left Content */}
+            <div className="space-y-6 z-10">
+              <h1 className="text-5xl md:text-5xl lg:text-5xl font-medium leading-normal">
+                Trust Layer For
+                Reputation-Based
+                Applications
+              </h1>
               
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-left basis-[72%]"
-            >
-              <p className="text-base text-gray-300 leading-tight font-archivo">
-                A zk-verified wallet score that any protocol can price, any chain can read, and 
-                only you can reveal.
+              <p className="text-gray-400 text-lg max-w-xl">
+                 Trust layer that powers reputation-based applications across decentralized finance, 
+                 marketplaces, loyalty, governance, and social ecosystems.
               </p>
 
-              <div className="flex items-center justify-end gap-x-6 mb-8">
-                <div>
-                  <div className="flex items-center gap-x-3">
-                    <div className="flex -gap-x-2">
-                      <div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full border-2 border-gray-900"></div>
-                      <div className="w-12 h-12 bg-gradient-to-r from-pink-400 to-orange-400 rounded-full border-2 border-gray-900"></div>
-                      <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full border-2 border-gray-900"></div>
-                    </div>
-                    <div className="text-white font-spaceGrotesk">
-                      <span className="text-4xl font-bold">100K</span>
-                    </div>
-                  </div>
-                  <div className="text-white font-spaceGrotesk mt-2 text-center relative before:content-empty before:w-2 before:h-2 before:bg-green-500 before:rounded-full before:absolute before:top-[9px] before:left-5">
-                    <span className="text-sm ml-8">Active Wallets Worldwide</span>
-                  </div>
-                </div>
+              <div className="flex flex-wrap gap-4 pt-4">
+                <button className="bg-[#0CFF85] hover:bg-[#0CFF85]/80 text-black font-semibold px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+                  Create ID
+                </button>
+                <button className="bg-gray-800 hover:bg-gray-700 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300">
+                  Build With ZkScore
+                </button>
               </div>
-            </motion.div>
+            </div>
 
-
-            {/* Wallet Cards */}
+            {/* Right Content - Circular Diagram */}
+            <div className="relative">
+              <Image src="/banner-image.png" alt="Banner Image" width="500" height="510" />
+            </div>
           </div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative mt-20"
-            >
-              <div className="relative w-full h-[230px]">
-                {/* Card 1 - Blue/Green Gradient */}
-                <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  className="absolute top-16 left-[13%] transform translate-x-[10%]"
-                >
-                  <Image src="/banner1.png" alt="card 1" width="536" height="629" />
-                </motion.div>
-
-                {/* Card 2 - Purple/Pink Gradient */}
-                <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  className="absolute top-0 left-[35%] transform translate-x-1/3"
-                >
-                  <Image src="/banner2.png" alt="card 2" width="398" height="538" />
-                </motion.div>
-
-                {/* Card 3 - Yellow/Green Gradient */}
-                <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.5 }}
-                  className="absolute top-20 left-[45%] transform translate-x-[45%]"
-                >
-                  <Image src="/banner3.png" alt="card 3" width="542" height="649" />
-                </motion.div>
-              </div>
-            </motion.div>
-        </div>
-        <div className='mt-16 flex justify-between'>
-          <div className="bg-slate-100 w-10 h-10 relative before:content-empty before:w-10 before:h-10 before:bg-black/90  before:absolute before:top-0 before:left-0 before:rounded-bl-3xl"></div>
-          <div className="bg-slate-100 w-10 h-10 relative before:content-empty before:w-10 before:h-10 before:bg-black/90  before:absolute before:top-0 before:right-0 before:rounded-br-3xl"></div>
-        </div>
-        {/* Curve Shape */}
-        <div className="bg-[#f1f1f1]">
-          <div className="h-24 w-full bg-[url('/final-vector-layer.png')] bg-no-repeat bg-center bg-contain relative z-10 -mb-1"></div>
         </div>
       </section>
+
 
       {/* Partner Logos */}
-      <section className="-mt-[85px] z-20 relative">
-        <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-52">
-            <div className="">
-              <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
-                <div className="">
-                  <Image src="/Neteller.png" alt="Neteller" width="161" height="100" />
-                </div>
-                <div className="">
-                  <Image src="/Skrill.png" alt="Skrill" width="161" height="100" />
-                </div>
-                <div className="">
-                  <Image src="/ApplePay.png" alt="Apple Pay" width="161" height="100" />
-                </div>
-              </div>
-            </div>
-            <div className="">
-              <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
-                <div className="">
-                  <Image src="/AstroPay.png" alt="Astro Pay" width="161" height="100" />
-                </div>
-                <div className="">
-                  <Image src="/VisaDebit.png" alt="Visa Debit" width="161" height="100" />
-                </div>
-                <div className="">
-                  <Image src="/PayPal.png" alt="PayPal" width="161" height="100" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 2nd Section */}
-      <section className="relative py-24 lg:py-32 overflow-hidden">
-        <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Section Number */}
-              <div className="absolute -top-24 -left-12 text-[200px] font-bold text-gray-400 opacity-30 leading-none pointer-events-none font-spaceGrotesk">
-                01
-              </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-[85rem] mx-auto lg:px-8">
-            {/* Left Side - Content */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="relative mt-12"
-            >
-              <div className="relative z-10">
-                <h2 className="text-4xl lg:text-6xl font-bold text-black mb-10 leading-tight font-spaceGrotesk">
-                  Trustworthiness
-                  <br />
-                  <span className="text-black">that travels</span>
-                </h2>
-                
-                <p className="text-base text-gray-600 mb-4 leading-tight font-spaceGrotesk">
-                  Converts multi-chain activity into a portable, privacy-first trustscore. 
-                  Share a proof not your history to qualify for better terms across multi DeFi 
-                  applications and Loyalty Rewards.
-                </p>
-
-                <motion.button 
-                  whileHover={{ x: 5 }}
-                  className="flex items-center gap-x-3 text-black hover:text-gray-700 transition-colors group px-0 font-spaceGrotesk font-medium"
-                >
-                  <span className="text-lg font-semibold">Get Started</span>
-                  {/* <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /> */}
-                  <Image src="/button-arrow.svg" alt="arrow right" width="62" height="23" className="group-hover:translate-x-1 transition-transform" />
-                </motion.button>
-              </div>
-            </motion.div>
-
-            {/* Right Side - Statistics */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative"
-            >
-              <div className="">
-                {/* 820M Stat */}
-                <div className="flex items-center justify-center flex-col bg-[#F8F8F8] rounded-[40px] px-12 py-8 w-[381px] h-[298px] font-spaceGrotesk ml-8">
-                  <motion.div
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                    className="text-5xl lg:text-8xl font-normal text-gray-400 leading-none"
-                  >
-                    820M
-                  </motion.div>
-                  <p className="text-gray-400 text-lg mt-2 text-center">
-                    Unique wallets active
-                    <br />
-                    globally
-                  </p>
-                </div>
-
-                {/* Multi-Chain Coverage Card */}
-                <motion.div
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  className="relative flex items-center justify-center flex-col ml-auto -mt-12 mr-8 w-[367px] h-[274px] bg-gray-900 rounded-[40px] p-8"
-                >
-                  <div className="text-center shadow-2xl font-spaceGrotesk">
-                    <div className="text-5xl lg:text-8xl font-normal mb-4 bg-gradient-to-r from-[#83FF8F] to-[#CC7FF0] bg-clip-text text-transparent">
-                      8+
-                    </div>
-                    <p className="text-gray-300 text-lg text-center">
-                      Multi-Chain Coverage
-                    </p>
-                  </div>
-                </motion.div>
-
-                {/* 9000 Stat */}
-                <div className="flex items-center justify-center flex-col bg-[#F8F8F8] rounded-[40px] -ml-40 -mt-40 px-12 py-8 w-[365px] h-[298px]">
-                  <motion.div
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.5 }}
-                    className="text-5xl lg:text-8xl font-normal text-gray-400 leading-none font-spaceGrotesk"
-                  >
-                    9000
-                  </motion.div>
-                  <p className="text-gray-400 text-lg mt-2 text-center">
-                    Capped at 9000, makes
-                    <br />
-                    trustscore easy to integrate
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-
-      </section>
-
-
-      {/* 3rd section */}
-      <section className="relative pb-20 px-6 md:px-16 max-w-[1440px] mx-auto">
-
-{/* Section Number */}
-          <div className="absolute -top-24 -left-12 text-[200px] font-bold text-gray-400 opacity-30 leading-none pointer-events-none font-spaceGrotesk">
-                02
-              </div>
-      <div className="relative max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="relative"
-        >
-          
-
-          <div className="relative z-10">
-            <h2 className="text-4xl lg:text-6xl font-bold text-black mb-6 leading-tight font-spaceGrotesk">
-              Unlock capital, <br />
-              <span>not your data</span>
-            </h2>
-            
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl leading-relaxed font-spaceGrotesk">
-              ZKScore turns wallet behaviour into a zk-verified trustscore that earns better
-              limits in Decentralized finance and smarter loyalty rewards.
-            </p>
-
-            <motion.button 
-              whileHover={{ x: 5 }}
-              className="inline-block rounded-3xl bg-gradient-to-r from-[#83FF8F] to-[#CC7FF0] px-7 py-4 text-black font-medium hover:opacity-90 transition font-spaceGrotesk"
-            >
-              <span className="text-lg font-semibold">Mint a .zks ID</span>
-            </motion.button>
-          </div>
-        </motion.div>
-        
-        {/* Feature grid */}
-        <div className="grid grid-cols-1 gap-3 lg:grid-cols-3 mt-10 font-spaceGrotesk">
-          <div className="lg:col-span-2">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
-              {/* Wallet ID */}
-              <div className="rounded-2xl bg-black p-8 text-white">
-                <Image src="/wallet-graph.png" alt="Wallet Graph" width="163" height="81" />
-                <h3 className="text-4xl font-normal mt-4">Wallet ID</h3>
-                <p className="mt-2 text-gray-300">
-                  Your reputation anchored to your wallet, not your PII.
-                </p>
-              </div>
-
-              {/* ZK Privacy */}
-              <div className="rounded-2xl bg-white/60 p-8">
-                <Image src="/privacy.png" alt="ZK Privacy" width="75" height="75" />
-                <h3 className="text-4xl font-normal text-gray-900 mt-4">ZK Privacy</h3>
-                <p className="mt-2 text-[#525252]">
-                  Prove your reputation without revealing sensitive transaction details.
-                </p>
-              </div>
-            </div>
-            {/* Achievement */}
-            <div className="rounded-2xl bg-white/60 px-12 py-8 flex items-center justify-center gap-8">
-              <Image src="/achievements.png" alt="Achievement" width="75" height="75" />
-              <h3 className="text-4xl font-normal text-gray-900">Achievement</h3>
-              <p className="mt-2 text-[#525252]">
-                Gamified reputation building with rewards and special recognition.
-              </p>
-            </div>
-            
-          </div>
-          {/* right column  */}
+      <section className="relative">
+        <div className="max-w-screen-xl mx-auto px-4">
           <div className="">
-            {/* Real-time Analytics */}
-            <div className="rounded-2xl bg-white/60 p-8 h-full flex flex-col justify-between items-start">
-              <Image src="/analytics.png" alt="Real-time Analytics" width="75" height="75" />
-              <div>
-                <h3 className="text-4xl font-normal text-gray-900 mt-4">Real-time Analytics</h3>
-                <p className="mt-2 text-[#525252]">
-                  Monitor reputation metrics in real-time with our advanced analytics
-                  dashboard.
-                </p>
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-6 lg:gap-20 items-center">
+              <div className="">
+                <Image src="/ethereum.png" alt="Ethereum" width="127" height="32" />
+              </div>
+              <div className="">
+                <Image src="/google-cloud.png" alt="Google Cloud" width="202" height="32" />
+              </div>
+              <div className="">
+                <Image src="/infura.png" alt="Infura" width="186" height="32" />
+              </div>
+              <div className="">
+                <Image src="/alchemy.png" alt="Alchemy" width="151" height="32" />
+              </div>
+              <div className="">
+                <Image src="/base.png" alt="Base" width="127" height="32" />
+              </div>
+              <div className="">
+                <Image src="/bnb-chain.png" alt="BNB Chain" width="177" height="32" />
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-{/* //////////////////////////////////////////////////////////////////// */}
-  </div>
+      {/* Section 1 */}
+      <section className="relative bg-black text-white pb-20 pt-36 overflow-hidden">
+
+        <div className="relative container max-w-screen-xl mx-auto px-6">
+          <div className="text-center max-w-2xl mx-auto">
+            <h2 className="text-2xl md:text-4xl lg:text-4xl font-medium mb-6">
+              Turning Trust Into Utility
+            </h2>
+            <p className="text-gray-400 text-base">
+              Converts multi-chain activity into a portable, privacy-first trustscore. Share a proof of your
+              history to qualify for better terms across multi DeFi applications and Loyalty Rewards.
+            </p>
+          </div>
+
+          <div className="relative my-20">
+            <Image src="/turning-trust.png" alt="Turning Trust Into Utility" width="1074" height="400" className='w-full h-full object-contain'/>
+          </div>
+
+          {/* Stats Cards */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Card 1 */}
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+              <div className="relative flex gap-4">
+                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mb-6">
+                  <svg className="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-2xl md:text-4xl font-medium text-white mb-2">820M</h4>
+                  <p className="text-gray-400">Unique wallets active globally</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 2 */}
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+              <div className="relative flex gap-4">
+                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mb-6">
+                  <svg className="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-2xl md:text-4xl font-medium text-white mb-2">12+</h4>
+                  <p className="text-gray-400">Multi-Chain Coverage</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3 */}
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+              <div className="relative flex gap-4">
+                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mb-6">
+                  <svg className="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-2xl md:text-4xl font-medium text-white mb-2">9000</h4>
+                  <p className="text-gray-400">Makes trust score easy to integrate</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Section 3 */}
+      <section className="p-8 max-w-screen-xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Left Side */}
+          <div>
+            <div className="p-10 md:w-full md:px-4">
+              <h2 className="text-[40px] md:text-4xl mb-4 text-white">
+                Easy Integration With ZKScore SDK
+              </h2>
+              <p
+                className="text-[#b2b4b3] mt-8"
+                style={{ lineHeight: "1.6" }}
+              >
+                ZKScore’s SDK makes it seamless to integrate reputation data into
+                your dApp or protocol. In just a few lines of code, you can access
+                wallet trust scores, request zk-proofs, and tailor experiences for
+                users based on verified credibility.
+              </p>
+              <button className="bg-[#0CFF85] w-[226px] h-[47px] text-base  mt-[60px] text-black  rounded-[6px] font-medium">
+                Build with ZKScore
+              </button>
+            </div>
+          </div>
+          <div>
+{/* Right Side */}
+          <div className="gap-6 md:w-full md:mt-6">
+            <div className="bg-[#111] !p-[20px] h-[118px]  border !mb-[4px] rounded-[6px] border-gray-800">
+              <div className="h-[64px]">
+                <h2 className="text-white mb-2 text-sm">
+                  Install ZKScore SDK
+                </h2>
+              </div>
+              <div className="h-[50px]">
+                <p className="bg-black text-[#0CFF85] text-sm rounded-md ">
+                  Install zkscore-sdk
+                </p>
+              </div>
+            </div>
+            {/* Box 2 */}
+            <div className="bg-[#111] !p-[20px]   rounded-[6px] border border-gray-800">
+              <div className=" h-[64px]">
+                <h2 className="text-white  text-[20px] ">
+                  Initialize And Get User Score
+                </h2>
+              </div>
+              <div className="h-[314px]">
+                <pre
+                  className="bg-black text-[#0CFF85] text-sm p-3 rounded-md overflow-x-auto whitespace-pre"
+                  style={{ lineHeight: "1.5" }}
+                >
+                  {`import { ZKScore } from '@zkscore/sdk';
+
+                    const zkscore = new ZKScore({ 
+                      apiKey: 'your-api-key', 
+                      network: 'mainnet' 
+                    });  
+
+
+                    const userScore = await zkscore.getScore(userAddress);
+
+
+                    // Use score for loan decisions 
+                    if (userScore.creditRating > 700) { 
+                    enableUndercollateralizedLoan();
+                    }`}
+                </pre>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 5 */}
+      <section className="p-8 max-w-screen-xl mx-auto">
+        <div className="">
+          <h2 className="text-3xl md:text-4xl mb-8 text-white font-semibold">
+            ZKScore For Public Good
+          </h2>
+          <p
+            className="text-[#b2b4b3] text-base leading-7"
+          >
+            In Web3, every wallet starts from zero, no portable reputation, no
+            shared benchmark of reliability. This creates inefficiencies:
+            over-collateralized lending, sybil attacks in governance, spam in
+            airdrops, and high barriers to real-world adoption.
+          </p>
+        </div>
+
+        {/* Feature Section with Flex */}
+        <div className="w-[1240] mt-20 grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {features.map((item, index) => (
+            <div
+              className="w-[590px] p-[40px]  rounded-[20px] bg-[#111]  flex justify-center items-center md:w-full"
+              key={index}
+            >
+              <div className="w-[528px] flex flex-col gap-2 md:w-full">
+                <h3 className="text-white text-[24px] mb-0">
+                  {item.title}
+                </h3>
+                <p className="text-[#b2b4b3] text-sm">
+                  {item.description}
+                </p>
+                <img
+                  className="w-[453px] h-[297px] !ml-[100px] -mb-20"
+                  src={item.image}
+                  alt={item.title}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Section 6 */}
+      <section className="p-8 max-w-screen-xl mx-auto">
+        <div className=" text-center ">
+          <h2 className="text-4xl font-medium text-white mb-6 mx-auto leading-snug">
+            From Wallet Activity <br /> To Verifiable Trust.
+          </h2>
+          <p className="text-gray-400 text-base mb-20 max-w-5xl mx-auto">
+            ZKScore turns everyday onchain actions into a portable trustscore
+            that protocols and apps can use for lending, rewards, governance,
+            and more. Built with zero-knowledge proofs, your reputation remains
+            private while still being fully verifiable.
+          </p>
+
+          <img
+            className="mt-12 mx-auto max-w-[1240px] w-full h-[600px] object-cover"
+            src="https://media1.thrillophilia.com/filestore/fq3ihxg0293jbwtjxzuqov027dby_IMG%20World%20Entrance.jpg"
+            alt="ZKScore Example"
+          />
+        </div>
+      </section>
+
+      {/* Section 7  */}
+      <section className="p-8 py-20 max-w-screen-xl mx-auto">
+        <div className="text-center mb-20 ">
+          <h2 className="text-4xl text-white mb-6">
+            Trustscore Through On-Chain Behaviour
+          </h2>
+          <p
+            className="max-w-[978px] mx-auto text-gray-400 "
+          >
+            A trustscore that grows directly from on-chain behaviour. Every
+            wallet has the ability to earn credibility through activity and
+            time, with scores awarded for transactions and wallet age. The
+            result is a score that is fair, transparent, and truly
+            decentralized.
+          </p>
+        </div>
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 gap-y-10">
+            {data.map((item, index) => (
+              <div
+                className=" rounded-[20px] px-4"
+                key={index}
+              >
+                <img
+                  className="w-12 mb-8"
+                  src={item.image}
+                  alt={item.title}
+                />
+                <div className="flex-1">
+                  <h3 className="text-white text-[20px] mb-3">
+                    {item.title}
+                  </h3>
+                  <p
+                    className="text-[#b2b4b3] text-base mb-3"
+                    style={{ lineHeight: "1.6" }}
+                  >
+                    {item.description}
+                  </p>
+                </div>
+                <button className="bg-[#191919] px-4 py-3 text-base text-white text-center rounded-[6px] md:mx-auto md:mt-4">
+                  {item.btnText}
+                </button>
+              </div>
+            ))}
+          </div>
+      </section>
+      </div>
     </>
   );
 }

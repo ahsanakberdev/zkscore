@@ -633,94 +633,94 @@ if (userScore.creditRating > 700) {
 
       {/* Footer */}
       <footer className="px-5 py-20 max-w-screen-xl mx-auto">
-              <div className="flex justify-between gap-10">
-                <div className="w-[588px]">
-                  <Image src="/logo.png" alt="logo" width="160" height="64" />
-                  <div className="">
-                    <h3 className="text-2xl text-white font-medium mt-6 mb-6">
-                      Privacy-first trust for every wallet.
-                    </h3>
-                    <p className="w-[588px] text-[16px] text-white opacity-70">
-                      be the first to know about new features, upcoming events, and
-                      everything happening in the world of zKScore.
-                    </p>
-                    <div className="w-[588px] mt-3 flex justify-center items-center bg-[#191919] ">
-                      <input
-                        type="email"
-                        placeholder="Enter Your Email"
-                        className="rounded-[10px]
-                        bg-[#191919] 
-                        w-[588px]
-                        px-[20px] 
-                        text-[#fff] 
-                        placeholder:text-[#7a7a7a] 
-                        outline-none 
-                        border-none
-                      "
-                      />
-      
-                      <button className="bg-[#0CFF85] w-full max-w-[181px] px-10 text-black py-3 text-base rounded-md font-medium">
-                        Subscribe
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div className="w-[532px] flex gap-20">
-                  <div className="w-[102px]">
-                    <h3 className="font-semibold text-xl text-white mb-6">
-                      Products
-                    </h3>
-                    <ul
-                      className="space-y-3 list-none text-white opacity-70"
-                    >
-                      <li>Overview</li>
-                      <li>How It Works</li>
-                      <li>Integrations</li>
-                      <li>Docs</li>
-                      <li>API Access</li>
-                    </ul>
-                  </div>
-      
-                  {/* ECOSYSTEM */}
-                  <div className="w-[149px]">
-                    <h3 className="font-semibold text-xl text-white mb-6">
-                      Ecosystem
-                    </h3>
-                    <ul
-                      className="space-y-3 text-white opacity-70 list-none"
-                    >
-                      <li>For DAOs</li>
-                      <li>For DeFi Platforms</li>
-                      <li>For Wallets</li>
-                      <li>Partners</li>
-                      <li>Community Grants</li>
-                    </ul>
-                  </div>
-      
-                  {/* COMPANY */}
-                  <div className="w-[107px]">
-                    <h3 className="font-semibold text-xl text-white mb-6">
-                      Company
-                    </h3>
-                    <ul
-                      className="space-y-3 list-none text-white opacity-70"
-                    >
-                      <li>About</li>
-                      <li>Blog</li>
-                      <li>Careers</li>
-                      <li>Terms</li>
-                    </ul>
-                  </div>
+          <div className="flex justify-between gap-10">
+            <div className="w-[588px]">
+              <Image src="/logo.png" alt="logo" width="160" height="64" />
+              <div className="">
+                <h3 className="text-2xl text-white font-medium mt-6 mb-6">
+                  Privacy-first trust for every wallet.
+                </h3>
+                <p className="w-[588px] text-[16px] text-white opacity-70">
+                  be the first to know about new features, upcoming events, and
+                  everything happening in the world of zKScore.
+                </p>
+                <div className="w-[588px] mt-3 flex justify-center items-center bg-[#191919] ">
+                  <input
+                    type="email"
+                    placeholder="Enter Your Email"
+                    className="rounded-[10px]
+                    bg-[#191919] 
+                    w-[588px]
+                    px-[20px] 
+                    text-[#fff] 
+                    placeholder:text-[#7a7a7a] 
+                    outline-none 
+                    border-none
+                  "
+                  />
+  
+                  <button className="bg-[#0CFF85] w-full max-w-[181px] px-10 text-black py-3 text-base rounded-md font-medium">
+                    Subscribe
+                  </button>
                 </div>
               </div>
-              {/* BOTTOM FOOTER */}
-              <div className="flex md:flex-row justify-between mt-20 items-center text-white opacity-70">
-                <p className="text-base">Copyright 2025. All Rights Reserved.</p>
-                <div className="flex gap-8">
-                  <p>Privacy Policy</p>
-                  <p>Terms Of Services</p>
-                </div>
+            </div>
+            <div className="w-[532px] flex gap-20">
+              <div className="w-[102px]">
+                <h3 className="font-semibold text-xl text-white mb-6">
+                  Products
+                </h3>
+                <ul
+                  className="space-y-3 list-none text-white opacity-70"
+                >
+                  <li>Overview</li>
+                  <li>How It Works</li>
+                  <li>Integrations</li>
+                  <li>Docs</li>
+                  <li>API Access</li>
+                </ul>
               </div>
+  
+              {/* ECOSYSTEM */}
+              <div className="w-[149px]">
+                <h3 className="font-semibold text-xl text-white mb-6">
+                  Ecosystem
+                </h3>
+                <ul
+                  className="space-y-3 text-white opacity-70 list-none"
+                >
+                  <li>For DAOs</li>
+                  <li>For DeFi Platforms</li>
+                  <li>For Wallets</li>
+                  <li>Partners</li>
+                  <li>Community Grants</li>
+                </ul>
+              </div>
+  
+              {/* COMPANY */}
+              <div className="w-[107px]">
+                <h3 className="font-semibold text-xl text-white mb-6">
+                  Company
+                </h3>
+                <ul
+                  className="space-y-3 list-none text-white opacity-70"
+                >
+                  <li>About</li>
+                  <li>Blog</li>
+                  <li>Careers</li>
+                  <li>Terms</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          {/* BOTTOM FOOTER */}
+          <div className="flex md:flex-row justify-between mt-20 items-center text-white opacity-70">
+            <p className="text-base">Copyright 2025. All Rights Reserved.</p>
+            <div className="flex gap-8">
+              <p>Privacy Policy</p>
+              <p>Terms Of Services</p>
+            </div>
+          </div>
         </footer>
       </div>
     </>

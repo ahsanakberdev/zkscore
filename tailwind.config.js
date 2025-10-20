@@ -70,10 +70,10 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Geist', 'system-ui', 'sans-serif'],
         mono: ['Fira Code', 'monospace'],
-        spaceGrotesk: ['Space Grotesk', 'sans-serif'],
-        archivo: ['Archivo', 'sans-serif'],
+        geist: ['Geist', 'sans-serif'],
+        geistMono: ['Geist Mono', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',

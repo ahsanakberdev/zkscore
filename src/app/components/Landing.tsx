@@ -272,7 +272,7 @@ if (userScore.creditRating > 700) {
           {/* Stats Cards */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Card 1 */}
-            <div className="relative group border border-gray-900 rounded-2xl p-6">
+            <div className="relative group border border-[#ffffff1a] bg-[#0A0A0A] rounded-2xl p-6">
               <div className="relative flex gap-4">
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6">
                   <Image src="/wallet.svg" alt="Turning Trust Into Utility" width="50" height="50" className=''/>
@@ -285,7 +285,7 @@ if (userScore.creditRating > 700) {
             </div>
 
             {/* Card 2 */}
-            <div className="relative group border border-gray-900 rounded-2xl p-6">
+            <div className="relative group border border-[#ffffff1a] bg-[#0A0A0A] rounded-2xl p-6">
               <div className="relative flex gap-4">
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6">
                   <Image src="/multi-chain.svg" alt="Turning Trust Into Utility" width="50" height="50" className=''/>
@@ -298,7 +298,7 @@ if (userScore.creditRating > 700) {
             </div>
 
             {/* Card 3 */}
-            <div className="relative group border border-gray-900 rounded-2xl p-6">
+            <div className="relative group border border-[#ffffff1a] bg-[#0A0A0A] rounded-2xl p-6">
               <div className="relative flex gap-4">
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6">
                   <Image src="/integration-plug.svg" alt="Turning Trust Into Utility" width="50" height="50" className=''/>
@@ -313,11 +313,12 @@ if (userScore.creditRating > 700) {
         </div>
       </section>
 
+
       {/* Section 2 */}
       <section className="px-5 py-20 max-w-screen-xl mx-auto">
         <div className="flex flex-wrap justify-between items-start gap-2">
           <div className="max-w-[38rem]">
-            <h2 className="text-[1.5rem] md:text-[1.875rem] lg:text-[2.5rem] font-medium text-white mb-6 leading-tight"> reputation backbone For decentralized applications</h2>
+            <h2 className="text-[1.5rem] md:text-[1.875rem] lg:text-[2.5rem] font-medium text-white mb-6 leading-tight"> Reputation backbone For decentralized applications</h2>
             <p className="opacity-70 text-white text-base">
                A public good that bridges fragmented ecosystems through a unified, privacy-preserving trust layer.
             </p>
@@ -330,7 +331,7 @@ if (userScore.creditRating > 700) {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch mt-20">
           {/* Wallet ID */}
           <div>
-            <div className='px-6 pb-7 pt-10 border border-gray-900 rounded-2xl bg-gradient-to-br from-[#ffffff0f] to-transparent'>
+            <div className='px-6 pb-7 pt-10 border border-[#ffffff1a] rounded-2xl bg-gradient-to-br from-[#ffffff0f] to-transparent'>
               <Image src="/wallet-id.png" alt="Turning Trust Into Utility" width="270" height="252" className='w-full h-[252px] object-contain mb-10'/>
               <h3 className="text-white text-2xl font-medium mb-1">
                 {"Wallet ID"}
@@ -341,7 +342,7 @@ if (userScore.creditRating > 700) {
             </div>
           </div>
           <div className='col-span-2'>
-            <div className='px-6 pb-7 pt-10 border border-gray-900 rounded-2xl bg-gradient-to-br from-[#ffffff0f] to-transparent'>
+            <div className='px-6 pb-7 pt-10 border border-[#ffffff1a] rounded-2xl bg-gradient-to-br from-[#ffffff0f] to-transparent h-full'>
               <Image src="/zk-privacy.png" alt="Turning Trust Into Utility" width="565" height="252" className='w-full h-[252px] object-contain mb-10'/>
               <h3 className="text-white text-2xl font-medium mb-1">
                 {"ZK privacy"}
@@ -353,10 +354,10 @@ if (userScore.creditRating > 700) {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch mt-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch mt-6">
           {/* Wallet ID */}
           <div className='col-span-2'>
-            <div className='px-6 pb-7 pt-10 border border-gray-900 rounded-2xl bg-gradient-to-br from-[#ffffff0f] to-transparent'>
+            <div className='px-6 pb-7 pt-10 border border-[#ffffff1a] rounded-2xl bg-gradient-to-br from-[#ffffff0f] to-transparent h-full'>
               <Image src="/realtime-analytics.svg" alt="Real Time Analytics" width="693" height="252" className='w-full h-[252px] object-contain'/>
               <h3 className="text-white text-2xl font-medium mb-1">
                 {"Real Time Analytics"}
@@ -367,7 +368,7 @@ if (userScore.creditRating > 700) {
             </div>
           </div>
           <div>
-            <div className='px-6 pb-7 pt-10 border border-gray-900 rounded-2xl bg-gradient-to-br from-[#ffffff0f] to-transparent'>
+            <div className='px-6 pb-7 pt-10 border border-[#ffffff1a] rounded-2xl bg-gradient-to-br from-[#ffffff0f] to-transparent'>
               <Image src="/achievements.svg" alt="Achievements" width="270" height="252" className='w-full h-[252px] object-contain'/>
               <h3 className="text-white text-2xl font-medium mb-1">
                 {"Achievements"}
@@ -381,58 +382,60 @@ if (userScore.creditRating > 700) {
       </section>
       
       {/* Section 3 */}
-      <section className="px-5 py-20 max-w-screen-xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
-            {/* Left Side */}
-          <div>
-            <div className="max-w-[31.25rem]">
-              <h2 className="text-[24px] md:text-[30px] lg:text-[2.5rem] font-medium text-white mb-6 leading-tight">Easy Integration With ZKScore SDK</h2>
-              <p className="opacity-70 text-white text-base">ZKScore’s SDK makes it seamless to integrate reputation data into
-                your dApp or protocol. In just a few lines of code, you can access
-                wallet trust scores, request zk-proofs, and tailor experiences for
-                users based on verified credibility.
-                </p>
-              
-              <button className="bg-[#0CFF85] hover:bg-[#0CFF85]/80 text-black font-semibold px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 mt-14">
-                Build with ZKScore
-              </button>
-            </div>
-          </div>
-          {/* Right Side Code Editor */}
-          <div className="codeBlock">
-            {codeBlocks.map((block, index) => (
-              <div 
-                key={index}
-                className={`relative bg-[#ffffff0a] p-6 border rounded-lg border-[#ffffff1a] ${index < codeBlocks.length - 1 ? 'mb-6' : ''}`}
-              >
-                {/* Header with title and copy button */}
-                <div className="flex items-center justify-between mb-8">
-                  <h2 className="text-white text-xl font-medium">
-                    {block.title}
-                  </h2>
-                  <button
-                    onClick={() => handleCopy(block.code, index)}
-                    className="p-2 hover:bg-white/5 rounded-lg transition-colors flex-shrink-0"
-                    aria-label="Copy to clipboard"
-                  >
-                    {copiedIndex === index ? (
-                      <svg className="w-5 h-5 text-[#0CFF85]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    ) : (
-                      <svg className="w-5 h-5 text-gray-400 hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                      </svg>
-                    )}
-                  </button>
-                </div>
-
-                {/* Code content */}
-                <pre className="text-[#0CFF85] text-sm font-geistMono overflow-x-auto leading-relaxed">
-                  {block.code}
-                </pre>
+      <section className="py-20 bg-[url('/code-block-bg.png')] bg-contain bg-left bg-no-repeat">
+        <div className='px-5  max-w-screen-xl mx-auto'>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+              {/* Left Side */}
+            <div>
+              <div className="max-w-[31.25rem]">
+                <h2 className="text-[24px] md:text-[30px] lg:text-[2.5rem] font-medium text-white mb-6 leading-tight">Easy Integration With ZKScore SDK</h2>
+                <p className="opacity-70 text-white text-base">ZKScore’s SDK makes it seamless to integrate reputation data into
+                  your dApp or protocol. In just a few lines of code, you can access
+                  wallet trust scores, request zk-proofs, and tailor experiences for
+                  users based on verified credibility.
+                  </p>
+                
+                <button className="bg-[#0CFF85] hover:bg-[#0CFF85]/80 text-black font-semibold px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 mt-14">
+                  Build with ZKScore
+                </button>
               </div>
-            ))}
+            </div>
+            {/* Right Side Code Editor */}
+            <div className="codeBlock">
+              {codeBlocks.map((block, index) => (
+                <div 
+                  key={index}
+                  className={`relative bg-[#ffffff0a] p-6 border rounded-lg border-[#ffffff1a] ${index < codeBlocks.length - 1 ? 'mb-6' : ''}`}
+                >
+                  {/* Header with title and copy button */}
+                  <div className="flex items-center justify-between mb-8">
+                    <h2 className="text-white text-xl font-medium">
+                      {block.title}
+                    </h2>
+                    <button
+                      onClick={() => handleCopy(block.code, index)}
+                      className="p-2 hover:bg-white/5 rounded-lg transition-colors flex-shrink-0"
+                      aria-label="Copy to clipboard"
+                    >
+                      {copiedIndex === index ? (
+                        <svg className="w-5 h-5 text-[#0CFF85]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      ) : (
+                        <svg className="w-5 h-5 text-gray-400 hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                      )}
+                    </button>
+                  </div>
+
+                  {/* Code content */}
+                  <pre className="text-[#0CFF85] text-sm font-geistMono overflow-x-auto leading-relaxed">
+                    {block.code}
+                  </pre>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -632,7 +635,8 @@ if (userScore.creditRating > 700) {
       </section>
 
       {/* Footer */}
-      <footer className="px-5 py-20 max-w-screen-xl mx-auto">
+      <footer className="py-20 bg-[#ffffff0a]">
+        <div className="px-5 max-w-screen-xl mx-auto">
           <div className="flex justify-between gap-10">
             <div className="w-[588px]">
               <Image src="/logo.png" alt="logo" width="160" height="64" />
@@ -644,12 +648,14 @@ if (userScore.creditRating > 700) {
                   be the first to know about new features, upcoming events, and
                   everything happening in the world of zKScore.
                 </p>
-                <div className="w-[588px] mt-3 flex justify-center items-center bg-[#191919] ">
+                <div className="w-[588px] mt-3 flex justify-center items-center bg-[#ffffff0a] p-[6px] rounded-lg" style={{
+                  boxShadow: 'inset 0 0 8px 0 rgba(255, 255, 255, 0.1)'
+                }}>
                   <input
                     type="email"
                     placeholder="Enter Your Email"
-                    className="rounded-[10px]
-                    bg-[#191919] 
+                    className="
+                    bg-transparent 
                     w-[588px]
                     px-[20px] 
                     text-[#fff] 
@@ -659,8 +665,23 @@ if (userScore.creditRating > 700) {
                   "
                   />
   
-                  <button className="bg-[#0CFF85] w-full max-w-[181px] px-10 text-black py-3 text-base rounded-md font-medium">
-                    Subscribe
+                  <button className="bg-[#0CFF85] w-full max-w-[181px] px-10 text-black flex items-center py-3 text-base rounded-md font-medium">
+                    <span className="mr-2"> Subscribe</span>
+                    <svg 
+                      width="32" 
+                      height="32" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      className="transition-transform duration-300 group-hover:translate-x-1"
+                    >
+                      <path 
+                        d="M5 12H19M19 12L12 5M19 12L12 19" 
+                        stroke="currentColor" 
+                        strokeWidth="2.5" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round"
+                      />
+                    </svg>
                   </button>
                 </div>
               </div>
@@ -721,6 +742,7 @@ if (userScore.creditRating > 700) {
               <p>Terms Of Services</p>
             </div>
           </div>
+        </div>
         </footer>
       </div>
     </>

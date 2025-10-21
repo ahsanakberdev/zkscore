@@ -455,7 +455,7 @@ if (userScore.creditRating > 700) {
         {/* Feature Section with Flex */}
         <div className="mt-20 grid grid-cols-1 lg:grid-cols-2 gap-6">
           {features.map((item, index) => (
-            <div key={index} className='px-6 pb-7 pt-10 border border-gray-900 rounded-2xl bg-gradient-to-br from-[#ffffff0f] to-transparent'>
+            <div key={index} className='px-6 pb-7 pt-10 border border-[#ffffff1a] rounded-2xl bg-gradient-to-br from-[#ffffff0f] to-transparent'>
               <h3 className="text-white text-2xl font-medium mb-4">
                 {item.title}
               </h3>
@@ -605,7 +605,7 @@ if (userScore.creditRating > 700) {
 
           <details
             key={index}
-            className="group border border-gray-800 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden"
+            className="group border border-[#ffffff1a] bg-[#ffffff0f] rounded-2xl p-6 [&_summary::-webkit-details-marker]:hidden"
             open={index === 0}
           >
             <summary className="flex items-center justify-between gap-1.5 text-white">

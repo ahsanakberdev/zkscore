@@ -321,19 +321,19 @@ if (userScore.creditRating > 700) {
           <div className="relative container max-w-screen-xl mx-auto px-5 pt-16 pb-20">
             <div className="grid lg:grid-cols-2 gap-2 items-center">
               {/* Left Content */}
-              <div className="space-y-6 z-10">
                 <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="text-left"
             >
+              <div className="space-y-6 z-10">
                 <h1 className="text-[1.5rem] md:text-[2.5rem] lg:text-[3.25rem] font-medium leading-tight">
                   Trust Layer For
                   Reputation-Based
                   Applications
                 </h1>
-                <p className="text-gray-400 text-lg">
+                <p className="text-white text-lg opacity-70">
                   Trust layer that powers reputation-based applications across decentralized finance,
                   marketplaces, loyalty, governance, and social ecosystems.
                 </p>
@@ -345,8 +345,8 @@ if (userScore.creditRating > 700) {
                     Build With ZkScore
                   </button>
                 </div>
-            </motion.div>
               </div>
+            </motion.div>
 
               {/* Right Content - Circular Diagram */}
               <div className="relative flex justify-center lg:justify-end">

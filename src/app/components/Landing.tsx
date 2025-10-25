@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { motion, useScroll } from "framer-motion";
+import { AnimatePresence, motion, useScroll } from "framer-motion";
 import Image from "next/image";
 import ClientsLogo from "./ClientsLogo";
 
@@ -137,51 +137,51 @@ const data = [
   {
     title: "Wallet Age",
     description: "Older wallets demonstrate long-term commitment to DeFi.",
-    image: "/data-frame.png",
+    image: "/hourglass.svg",
     btnText: "1.5 score per bridge",
   },
   {
     title: "DEX Trading",
     description:
       "Trade on decentralized exchanges to build trading reputation.",
-    image: "/trading.png",
+    image: "/coins-swap.svg",
     btnText: "1.5 score per bridge",
   },
   {
     title: "Liquidity",
     description: "Provide liquidity to earn fees and build reputation.",
-    image: "/liquidity.png",
+    image: "/droplet.svg",
     btnText: "1.5 score per bridge",
   },
   {
     title: "Lending",
     description: "Supply liquidity and borrow assets responsibly.",
-    image: "/landing.png",
+    image: "/blockchain-04.svg",
     btnText: "1.5 score per bridge",
   },
   {
     title: "NFT Trading",
     description: "Trade NFTs and participate in digital asset markets.",
-    image: "/nft-trading.png",
+    image: "/ticket.svg",
     btnText: "1.5 score per bridge",
   },
 
   {
     title: "Bridge",
     description: "Move assets across different blockchain networks.",
-    image: "/bridge.png",
+    image: "/orbit.svg",
     btnText: "1.5 score per bridge",
   },
   {
     title: "Governance",
     description: "Participate in protocol governance and voting.",
-    image: "/governance.png",
+    image: "/ai-brain.svg",
     btnText: "1.5 score per bridge",
   },
   {
     title: "Staking",
     description: "Stake tokens and participate in network security.",
-    image: "/data-frame.png",
+    image: "/hourglass.svg",
     btnText: "1.5 score per bridge",
   },
 ];
@@ -242,6 +242,7 @@ function LandingPage() {
   const [headerStyle, setHeaderStyle] = useState("transparent");
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<keyof typeof tabContent>("defi");
 
   const handleVideoPlay = () => {
@@ -272,6 +273,10 @@ if (userScore.creditRating > 700) {
     // Add more code blocks here as needed
   ];
 
+  const toggleMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   const handleCopy = (code: string, index: number | null) => {
     navigator.clipboard.writeText(code);
     setCopiedIndex(index);
@@ -295,54 +300,112 @@ if (userScore.creditRating > 700) {
         {/* Header & Banner */}
         <section className="relative pt-20 lg:pt-24 overflow-hidden bg-[url('/pattern-dotted.png')] bg-cover bg-center ">
           <motion.header
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent backdrop-blur-md `}
-            initial={{ y: -100 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="max-w-screen-xl mx-auto px-5 py-5">
-              <div className="flex items-center justify-between h-16">
-                {/* Logo */}
-                <Image src="/logo.png" alt="logo" width="160" height="64" />
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent backdrop-blur-md `}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="max-w-screen-xl mx-auto px-5 py-5">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <Image src="/logo.png" alt="logo" width="160" height="64" />
 
-                {/* Navigation */}
-                <motion.nav
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                  className="hidden md:flex items-center gap-x-14"
-                >
+            {/* Desktop Navigation */}
+            <motion.nav
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              className="hidden md:flex items-center gap-x-14"
+            >
+              <a
+                href="#"
+                className={`transition-colors text-gray-300 hover:text-white`}
+              >
+                Developers
+              </a>
+              <a
+                href="/docs"
+                className={`transition-colors text-gray-300 hover:text-white`}
+              >
+                Documentation
+              </a>
+              <a
+                href="/"
+                className={`transition-colors text-gray-300 hover:text-white`}
+              >
+                Explorer
+              </a>
+              <a
+                href="#"
+                className={`transition-colors text-gray-300 hover:text-white`}
+              >
+                FAQ
+              </a>
+            </motion.nav>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={toggleMenu}
+              className="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
+            </button>
+          </div>
+
+          {/* Mobile Menu */}
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3 }}
+                className="md:hidden overflow-hidden"
+              >
+                <nav className="flex flex-col gap-4 py-6 border-t border-gray-800 mt-4">
                   <a
                     href="#"
-                    className={`transition-colors text-gray-300 hover:text-white`}
+                    className="text-gray-300 hover:text-white transition-colors py-2 px-4 hover:bg-white/5 rounded-lg"
+                    onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Developers
                   </a>
-
                   <a
                     href="/docs"
-                    className={`transition-colors text-gray-300 hover:text-white`}
+                    className="text-gray-300 hover:text-white transition-colors py-2 px-4 hover:bg-white/5 rounded-lg"
+                    onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Documentation
                   </a>
-
                   <a
                     href="/"
-                    className={`transition-colors text-gray-300 hover:text-white`}
+                    className="text-gray-300 hover:text-white transition-colors py-2 px-4 hover:bg-white/5 rounded-lg"
+                    onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Explorer
                   </a>
-
                   <a
                     href="#"
-                    className={`transition-colors text-gray-300 hover:text-white`}
+                    className="text-gray-300 hover:text-white transition-colors py-2 px-4 hover:bg-white/5 rounded-lg"
+                    onClick={() => setIsMobileMenuOpen(false)}
                   >
                     FAQ
                   </a>
-                </motion.nav>
-              </div>
-            </div>
-          </motion.header>
+                </nav>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </motion.header>
 
           {/* Banner Section */}
           <div className="relative text-white overflow-hidden ">
@@ -461,12 +524,12 @@ if (userScore.creditRating > 700) {
                 className="relative group border border-[#ffffff1a] bg-[#0A0A0A] rounded-2xl p-6"
               >
                 <div className="relative flex gap-4">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6">
+                  <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-6 shadow-[0_0_4px_rgba(12,255,133,1)] bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-[#272727] to-black to-75%">
                     <Image
-                      src="/wallet.svg"
+                      src="/wallet-01.svg"
                       alt="Turning Trust Into Utility"
-                      width="50"
-                      height="50"
+                      width="24"
+                      height="24"
                       className=""
                     />
                   </div>
@@ -490,12 +553,12 @@ if (userScore.creditRating > 700) {
                 className="relative group border border-[#ffffff1a] bg-[#0A0A0A] rounded-2xl p-6"
               >
                 <div className="relative flex gap-4">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6">
+                  <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-6 shadow-[0_0_4px_rgba(12,255,133,1)] bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-[#272727] to-black to-75%">
                     <Image
-                      src="/multi-chain.svg"
+                      src="/blockchain.svg"
                       alt="Turning Trust Into Utility"
-                      width="50"
-                      height="50"
+                      width="24"
+                      height="24"
                       className=""
                     />
                   </div>
@@ -519,12 +582,12 @@ if (userScore.creditRating > 700) {
                 className="relative group border border-[#ffffff1a] bg-[#0A0A0A] rounded-2xl p-6"
               >
                 <div className="relative flex gap-4">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6">
+                  <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-6 shadow-[0_0_4px_rgba(12,255,133,1)] bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-[#272727] to-black to-75%">
                     <Image
-                      src="/integration-plug.svg"
+                      src="/plug-socket.svg"
                       alt="Turning Trust Into Utility"
-                      width="50"
-                      height="50"
+                      width="24"
+                      height="24"
                       className=""
                     />
                   </div>
@@ -775,7 +838,7 @@ if (userScore.creditRating > 700) {
         </section>
 
         {/* Section 4 */}
-        <section className="px-5 pt-6 md:pt-14 pb-12 md:pb-24 max-w-screen-xl mx-auto">
+        <section className="px-5 pt-6 md:pt-14 pb-12 md:pb-24 max-w-screen-xl mx-auto overflow-x-hidden">
           <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -799,13 +862,13 @@ if (userScore.creditRating > 700) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="flex items-center mb-6 bg-black rounded-md flex-wrap"
+                className="flex items-center mb-6 bg-black rounded-md overflow-x-auto"
               >
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`text-base px-5 py-4 rounded-lg text-center border-none
+                  className={`text-base px-5 py-4 rounded-lg text-center border-none whitespace-nowrap
                   ${
                     activeTab === tab.id
                       ? "bg-[#ffffff1a] text-white font-medium"
@@ -817,7 +880,7 @@ if (userScore.creditRating > 700) {
               ))}
             </motion.div>
             {/* Protocols Sec Left */}
-            <div className="grid lg:grid-cols-2 gap-12 items-start px-6 md:px-10 py-6 md:py-14 border border-[#ffffff1a] rounded-3xl bg-[#ffffff0a]">
+            <div className="grid lg:grid-cols-2 gap-6 md:gap-12 items-start px-6 md:px-10 py-6 md:py-14 border border-[#ffffff1a] rounded-3xl bg-[#ffffff0a]">
               <motion.div
                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -827,10 +890,10 @@ if (userScore.creditRating > 700) {
                 <h2 className="text-[1.5rem] md:text-[1.5rem] lg:text-[2rem] text-white font-medium">
                   {tabContent[activeTab].title}
                 </h2>
-                <p className="text-white opacity-70 mt-4">
+                <p className="text-white opacity-70 mt-2 md:mt-4">
                   {tabContent[activeTab].description}
                 </p>
-                <div className="grid grid-cols-2 gap-y-7 gap-x-4 mt-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-y-7 gap-x-4 mt-10">
                   {tabContent[activeTab].features.map((feature, index) => (
                     <div key={index}>
                       <h3 className="text-white font-medium text-base mb-2">
@@ -855,13 +918,13 @@ if (userScore.creditRating > 700) {
                     alt="Tabs"
                     width="568"
                     height="360"
-                    className="w-full h-[260px] md:h-[340px] object-contain object-right"
+                    className="w-full h-[180px] md:h-[340px] object-contain object-right"
                   />
                 </motion.div>
               {/* </div> */}
             </div>
 
-            <div className="flex items-center justify-between px-10 py-4 mt-6 border border-[#ffffff1a] bg-[#ffffff0a] rounded-3xl flex-col md:flex-row">
+            <div className="flex items-center justify-between px-3 md:px-10 py-4 mt-6 border border-[#ffffff1a] bg-[#ffffff0a] rounded-3xl flex-col md:flex-row gap-10 md:gap-2">
               <motion.div initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
@@ -874,11 +937,11 @@ if (userScore.creditRating > 700) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex items-center gap-6" >
-                <p className="flex gap-10 text-center items-center">
+                className="flex items-center gap-2 md:gap-6 flex-col md:flex-row w-full md:w-auto" >
+                <p className="text-white opacity-70">
                   No credit required
                 </p>
-                <button className="bg-[#0CFF85] hover:bg-[#0CFF85]/80 text-black font-semibold px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+                <button className="bg-[#0CFF85] hover:bg-[#0CFF85]/80 text-black font-semibold px-4 md:px-8 py-3 w-full md:w-auto rounded-lg transition-all duration-300 transform hover:scale-105">
                     Join Waitlist
                   </button>
               </motion.div>
@@ -1029,11 +1092,19 @@ if (userScore.creditRating > 700) {
                 className="px-4 pb-4 md:border-r last:border-r-0 lg:[&:nth-child(4n)]:border-r-0 relative border-[#ffffff33] 
         before:content-[''] before:absolute before:right-0 before:-bottom-5 before:w-full before:h-[1px] before:bg-[#ffffff33]"
                 >
-                <img
+                {/* <img
                   className="w-12 mb-4 md:mb-8"
                   src={item.image}
                   alt={item.title}
-                />
+                /> */}
+                <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 md:mb-8 shadow-[0_0_4px_rgba(12,255,133,1)] bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-[#272727] to-black to-75%">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    width="24"
+                    height="24"
+                  />
+                </div>
                 <div className="flex-1">
                   <h3 className="text-white text-lg md:text-xl mb-2 md:mb-4">
                     {item.title}
@@ -1166,7 +1237,7 @@ if (userScore.creditRating > 700) {
                         height="32"
                         viewBox="0 0 24 24"
                         fill="none"
-                        className="transition-transform duration-300 group-hover:translate-x-1"
+                        className="transition-transform duration-300 group-hover:translate-x-1 w-4 h-4 md:w-8 md:h-8"
                       >
                         <path
                           d="M5 12H19M19 12L12 5M19 12L12 19"

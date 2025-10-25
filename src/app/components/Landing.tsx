@@ -1,227 +1,237 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import { motion, useScroll } from 'framer-motion';
-import Image from 'next/image';
-import ClientsLogo from './ClientsLogo';
-
+"use client";
+import React, { useState, useEffect } from "react";
+import { motion, useScroll } from "framer-motion";
+import Image from "next/image";
+import ClientsLogo from "./ClientsLogo";
 
 const features = [
   {
     title: "Capital Efficiency",
     description: "Improve lending and borrowing mechanics in DeFi.",
-    image: '/efficiency.svg',
+    image: "/efficiency.svg",
   },
   {
     title: "Sybil Resistance",
     description: "Prevent gaming of rewards and airdrops.",
-    image: '/resistance.svg',
+    image: "/resistance.svg",
   },
   {
     title: "Wallet Verification",
     description:
       "Offer a zk-proof of wallet alternative to KYC-style verification.",
-    image: '/wallet-verification.svg',
+    image: "/wallet-verification.svg",
   },
   {
     title: "Reputation-Based Identity",
     description: "Serve as a reputation passport across Web3 ecosystems.",
-    image: '/identity.svg',
+    image: "/identity.svg",
   },
 ];
 
 const tabs = [
-    { id: 'defi', label: 'DeFi Protocols' },
-    { id: 'loyalty', label: 'Loyalty & Consumer Brands' },
-    { id: 'rwa', label: 'RWA & Insurance Platforms' },
-    { id: 'users', label: 'Everyday Users' }
-  ] as const;
+  { id: "defi", label: "DeFi Protocols" },
+  { id: "loyalty", label: "Loyalty & Consumer Brands" },
+  { id: "rwa", label: "RWA & Insurance Platforms" },
+  { id: "users", label: "Everyday Users" },
+] as const;
 
 const tabContent = {
   defi: {
-    title: 'DeFi Protocols',
-    description: 'ZKScore helps lending, trading, and yield platforms build safer, more efficient markets.',
+    title: "DeFi Protocols",
+    description:
+      "ZKScore helps lending, trading, and yield platforms build safer, more efficient markets.",
     features: [
       {
-        title: 'Trust-Based LTVs',
-        description: 'Participate in protocol governance and voting.'
+        title: "Trust-Based LTVs",
+        description: "Participate in protocol governance and voting.",
       },
       {
-        title: 'Credible Liquidity Providers',
-        description: 'Participate in protocol governance and voting.'
+        title: "Credible Liquidity Providers",
+        description: "Participate in protocol governance and voting.",
       },
       {
-        title: 'Reputation-Weighted Rewards',
-        description: 'Participate in protocol governance and voting.'
+        title: "Reputation-Weighted Rewards",
+        description: "Participate in protocol governance and voting.",
       },
       {
-        title: 'Wallet-Gated Access',
-        description: 'Exclusive access for wallets with 2K trust.'
-      }
+        title: "Wallet-Gated Access",
+        description: "Exclusive access for wallets with 2K trust.",
+      },
     ],
-    diagram: true
+    diagram: '/dfi-protocols.svg',
   },
   loyalty: {
-    title: 'Loyalty & Consumer Brands',
-    description: 'Build trust-based loyalty programs that reward authentic engagement.',
+    title: "Loyalty & Consumer Brands",
+    description:
+      "Reward real engagement and authenticity by replacing spend-based metrics with wallet-verified reputation.",
     features: [
       {
-        title: 'Tiered Rewards',
-        description: 'Reward customers based on their trust score.'
+        title: "Sybil-Resistant Programs",
+        description: "Reward authentic users, not bots or fakes.",
       },
       {
-        title: 'Exclusive Access',
-        description: 'Gate premium features for trusted users.'
+        title: "Real Engagement Tracking",
+        description: "Track true participation without personal data.",
       },
       {
-        title: 'Anti-Fraud',
-        description: 'Prevent bot and sybil attacks.'
+        title: "Tiered Rewards by Trustscore",
+        description: "Reward tiers built on wallet reputation strength.",
       },
       {
-        title: 'Personalization',
-        description: 'Tailor experiences based on user reputation.'
-      }
+        title: "Perks for Loyal Wallets",
+        description: "Special perks for long-standing verified wallets.",
+      },
     ],
-    diagram: false
+    diagram: '/loyality-tab.svg',
   },
   rwa: {
-    title: 'RWA & Insurance Platforms',
-    description: 'Enable real-world asset platforms with trust-based underwriting.',
+    title: "RWA Platforms & Lenders",
+    description:
+      "Bring transparency, fairness, and efficiency to real-world lending using zk-powered reputation signals.",
     features: [
       {
-        title: 'Credit Assessment',
-        description: 'Evaluate users for lending and insurance.'
+        title: "Reduced KYC With ZK-Proofs",
+        description: "Simplified onboarding without exposing personal info.",
       },
       {
-        title: 'Risk Scoring',
-        description: 'Calculate risk based on on-chain history.'
+        title: "Trust-Based Underwriting",
+        description: "Automated lending powered by wallet trust.",
       },
       {
-        title: 'KYC Alternative',
-        description: 'Privacy-preserving identity verification.'
+        title: "Credit Lines for Strong Wallets",
+        description: "Instant credit access for credible users.",
       },
       {
-        title: 'Claims Processing',
-        description: 'Automated claims based on trust scores.'
-      }
+        title: "Institutional Trust Benchmark",
+        description: "Universal zk trust layer for institutions.",
+      },
     ],
-    diagram: false
+    diagram: '/rwa-platforms.svg',
   },
   users: {
-    title: 'Everyday Users',
-    description: 'Build your reputation across the decentralized ecosystem.',
+    title: "Everyday Users",
+    description: "Empower users to prove credibility, earn trust, and access better Web3 opportunities privately.",
     features: [
       {
-        title: 'Universal Identity',
-        description: 'One score across all platforms.'
+        title: "Prove Credibility Privately",
+        description: "Show reliability without sharing private data.",
       },
       {
-        title: 'Better Terms',
-        description: 'Unlock better rates and rewards.'
+        title: "Earn Reputation via Activity",
+        description: "Gain trust through consistent on-chain actions.",
       },
       {
-        title: 'Privacy First',
-        description: 'Control what you share with zero-knowledge proofs.'
+        title: "Portable Trust Identity",
+        description: "One reputation carried across all ecosystems.",
       },
       {
-        title: 'Portable Reputation',
-        description: 'Take your trust score anywhere.'
-      }
+        title: "Unlock Better Rewards",
+        description: "Access perks based on earned trustscore.",
+      },
     ],
-    diagram: false
-  }
+    diagram: '/everyday-user.svg',
+  },
 };
 
 const data = [
   {
     title: "Wallet Age",
     description: "Older wallets demonstrate long-term commitment to DeFi.",
-    image: '/data-frame.png',
+    image: "/data-frame.png",
     btnText: "1.5 score per bridge",
   },
   {
     title: "DEX Trading",
     description:
       "Trade on decentralized exchanges to build trading reputation.",
-    image: '/trading.png',
+    image: "/trading.png",
     btnText: "1.5 score per bridge",
   },
   {
     title: "Liquidity",
     description: "Provide liquidity to earn fees and build reputation.",
-    image: '/liquidity.png',
+    image: "/liquidity.png",
     btnText: "1.5 score per bridge",
   },
   {
     title: "Lending",
     description: "Supply liquidity and borrow assets responsibly.",
-    image: '/landing.png',
+    image: "/landing.png",
     btnText: "1.5 score per bridge",
   },
   {
     title: "NFT Trading",
     description: "Trade NFTs and participate in digital asset markets.",
-    image: '/nft-trading.png',
+    image: "/nft-trading.png",
     btnText: "1.5 score per bridge",
   },
 
   {
     title: "Bridge",
     description: "Move assets across different blockchain networks.",
-    image: '/bridge.png',
+    image: "/bridge.png",
     btnText: "1.5 score per bridge",
   },
   {
     title: "Governance",
     description: "Participate in protocol governance and voting.",
-    image: '/governance.png',
+    image: "/governance.png",
     btnText: "1.5 score per bridge",
   },
   {
     title: "Staking",
     description: "Stake tokens and participate in network security.",
-    image: '/data-frame.png',
+    image: "/data-frame.png",
     btnText: "1.5 score per bridge",
   },
 ];
 const faqs = [
   {
     title: "What is ZKScore?",
-    description: "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
+    description:
+      "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
   },
   {
     title: "How does ZKScore protect my privacy?",
-    description: "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
+    description:
+      "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
   },
   {
     title: "Why is wallet reputation important?",
-    description: "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
+    description:
+      "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
   },
   {
     title: "Can I use ZKScore across multiple platforms?",
-    description: "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
+    description:
+      "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
   },
   {
     title: "What kinds of activities affect my score?",
-    description: "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
+    description:
+      "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
   },
   {
     title: "How does ZKScore protect user privacy?",
-    description: "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
+    description:
+      "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
   },
   {
     title: "Can projects integrate ZKScore into existing smart contracts?",
-    description: "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
+    description:
+      "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
   },
   {
     title: "What types of data are used to build a reputation score?",
-    description: "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
+    description:
+      "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
   },
   {
     title: "Is ZKScore compatible with multiple chains?",
-    description: "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
+    description:
+      "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
   },
-]
-
+];
 
 export default function HomePage() {
   return <LandingPage />;
@@ -229,10 +239,10 @@ export default function HomePage() {
 
 function LandingPage() {
   const { scrollY } = useScroll();
-  const [headerStyle, setHeaderStyle] = useState('transparent');
+  const [headerStyle, setHeaderStyle] = useState("transparent");
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
-  const [activeTab, setActiveTab] = useState<keyof typeof tabContent>('defi');
+  const [activeTab, setActiveTab] = useState<keyof typeof tabContent>("defi");
 
   const handleVideoPlay = () => {
     setIsVideoPlaying(true);
@@ -241,7 +251,7 @@ function LandingPage() {
   const codeBlocks = [
     {
       title: "Install ZKScore SDK",
-      code: "Install zkscore-sdk"
+      code: "Install zkscore-sdk",
     },
     {
       title: "Initialize And Get User Score",
@@ -257,8 +267,8 @@ const userScore = await zkscore.getScore(userAddress);
 // Use score for loan decisions
 if (userScore.creditRating > 700) {
   enableUndercollateralizedLoan();
-}`
-    }
+}`,
+    },
     // Add more code blocks here as needed
   ];
 
@@ -267,13 +277,13 @@ if (userScore.creditRating > 700) {
     setCopiedIndex(index);
     setTimeout(() => setCopiedIndex(null), 2000);
   };
-  
+
   useEffect(() => {
-    const unsubscribe = scrollY.onChange(latest => {
+    const unsubscribe = scrollY.onChange((latest) => {
       if (latest > 900) {
-        setHeaderStyle('solid');
+        setHeaderStyle("solid");
       } else {
-        setHeaderStyle('transparent');
+        setHeaderStyle("transparent");
       }
     });
     return unsubscribe;
@@ -281,691 +291,947 @@ if (userScore.creditRating > 700) {
 
   return (
     <>
-    <div className="relative bg-black">
+      <div className="relative bg-black">
+        {/* Header & Banner */}
+        <section className="relative pt-20 lg:pt-24 overflow-hidden bg-[url('/pattern-dotted.png')] bg-cover bg-center ">
+          <motion.header
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent backdrop-blur-md `}
+            initial={{ y: -100 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="max-w-screen-xl mx-auto px-5 py-5">
+              <div className="flex items-center justify-between h-16">
+                {/* Logo */}
+                <Image src="/logo.png" alt="logo" width="160" height="64" />
 
-      {/* Header & Banner */}
-      <section className="relative pt-20 lg:pt-24 overflow-hidden bg-[url('/pattern-dotted.png')] bg-cover bg-center ">
-        <motion.header 
-          className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent backdrop-blur-md `}
-          initial={{ y: -100 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="max-w-screen-xl mx-auto px-5 py-5">
-            <div className="flex items-center justify-between h-16">
-              
-              {/* Logo */}
-              <Image src="/logo.png" alt="logo" width="160" height="64" />
+                {/* Navigation */}
+                <motion.nav
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                  className="hidden md:flex items-center gap-x-14"
+                >
+                  <a
+                    href="#"
+                    className={`transition-colors text-gray-300 hover:text-white`}
+                  >
+                    Developers
+                  </a>
 
-              {/* Navigation */}
-              <motion.nav 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.3 }}
-                className="hidden md:flex items-center gap-x-14"
-              >
-                <a href="#" className={`transition-colors text-gray-300 hover:text-white`}>Developers</a>
+                  <a
+                    href="/docs"
+                    className={`transition-colors text-gray-300 hover:text-white`}
+                  >
+                    Documentation
+                  </a>
 
-                <a href="/docs" className={`transition-colors text-gray-300 hover:text-white`}>Documentation</a>
+                  <a
+                    href="/"
+                    className={`transition-colors text-gray-300 hover:text-white`}
+                  >
+                    Explorer
+                  </a>
 
-                <a href="/" className={`transition-colors text-gray-300 hover:text-white`}>Explorer</a>
-
-                <a href="#" className={`transition-colors text-gray-300 hover:text-white`}>FAQ</a>
-              </motion.nav>
-            </div>
-          </div>
-        </motion.header>
-
-        {/* Banner Section */}
-        <div className="relative text-white overflow-hidden ">
-          <div className="relative container max-w-screen-xl mx-auto px-5 pt-16 pb-20">
-            <div className="grid lg:grid-cols-2 gap-2 items-center">
-              {/* Left Content */}
-                <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-left"
-            >
-              <div className="space-y-6 z-10">
-                <h1 className="text-[1.5rem] md:text-[2.5rem] lg:text-[3.25rem] font-medium leading-tight">
-                  Trust Layer For
-                  Reputation-Based
-                  Applications
-                </h1>
-                <p className="text-white text-lg opacity-70">
-                  Trust layer that powers reputation-based applications across decentralized finance,
-                  marketplaces, loyalty, governance, and social ecosystems.
-                </p>
-                <div className="flex flex-wrap gap-4 pt-4">
-                  <button className="bg-[#0CFF85] hover:bg-[#0CFF85]/80 text-black font-semibold max-w-40 w-full px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
-                    Create ID
-                  </button>
-                  <button className="bg-neutral-900 hover:bg-neutral-700 border border-neutral-600 text-white font-semibold px-8 py-3 rounded-md transition-all duration-300">
-                    Build With ZkScore
-                  </button>
-                </div>
+                  <a
+                    href="#"
+                    className={`transition-colors text-gray-300 hover:text-white`}
+                  >
+                    FAQ
+                  </a>
+                </motion.nav>
               </div>
-            </motion.div>
+            </div>
+          </motion.header>
 
-              {/* Right Content - Circular Diagram */}
-              <div className="relative flex justify-center lg:justify-end">
+          {/* Banner Section */}
+          <div className="relative text-white overflow-hidden ">
+            <div className="relative container max-w-screen-xl mx-auto px-5 pt-16 pb-10 md:pb-20">
+              <div className="grid lg:grid-cols-2 gap-2 items-center">
+                {/* Left Content */}
                 <motion.div
                   initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.8 }}
+                  className="text-left"
                 >
-                  <Image src="/banner-image.png" alt="Banner Image" width="500" height="510" />
+                  <div className="space-y-6 z-10">
+                    <h1 className="text-[1.5rem] md:text-[2.5rem] lg:text-[3.25rem] font-medium leading-tight">
+                      Trust Layer For Reputation-Based Applications
+                    </h1>
+                    <p className="text-white text-lg opacity-70">
+                      Trust layer that powers reputation-based applications
+                      across decentralized finance, marketplaces, loyalty,
+                      governance, and social ecosystems.
+                    </p>
+                    <div className="flex flex-wrap gap-4 pt-4 w-full">
+                      <button
+                        className="bg-[#0CFF85] hover:bg-[#0CFF85]/80 text-black font-semibold max-w-40 w-full px-4 md:px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 text-sm md:text-base lg:text-base"
+                      >
+                        Create ID
+                      </button>
+                      <button
+                        className="bg-neutral-900 hover:bg-neutral-700 border border-neutral-600 text-white font-semibold px-4 md:px-8 py-3 rounded-lg transition-all duration-300 text-sm md:text-base lg:text-base"
+                      >
+                        Build With ZkScore
+                      </button>
+                    </div>
+                  </div>
                 </motion.div>
+
+                {/* Right Content - Circular Diagram */}
+                <div className="relative flex justify-center lg:justify-end">
+                  <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                  >
+                    <Image
+                      src="/banner-graphics.svg"
+                      alt="Banner Image"
+                      width="500"
+                      height="510"
+                    />
+                  </motion.div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      
-      {/* Partner Logos */}
-      <ClientsLogo />
+        </section>
 
-      {/* Section 1 */}
-      <section className="relative bg-black text-white pb-20 pt-40 overflow-hidden">
+        {/* Partner Logos */}
+        <ClientsLogo />
 
-        <div className="relative container max-w-screen-xl mx-auto px-5">
-          <div className="text-center max-w-2xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h2 className="text-2xl md:text-3xl lg:text-[2.5rem] font-medium mb-8">
-                Turning Trust Into Utility
-              </h2>
-              <p className="opacity-70 text-base">
-                Converts multi-chain activity into a portable, privacy-first trustscore. Share a proof of your
-                history to qualify for better terms across multi DeFi applications and Loyalty Rewards.
-              </p>
-            </motion.div>
-          </div>
-
-          <div className="relative my-20">
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <Image src="/turning-trust.png" alt="Turning Trust Into Utility" width="1074" height="400" className='w-full h-full object-contain'/>
-            </motion.div>
-          </div>
-
-          {/* Stats Cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Card 1 */}
-            <motion.div
-            initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-             className="relative group border border-[#ffffff1a] bg-[#0A0A0A] rounded-2xl p-6">
-              <div className="relative flex gap-4">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6">
-                  <Image src="/wallet.svg" alt="Turning Trust Into Utility" width="50" height="50" className=''/>
-                </div>
-                <div>
-                  <h4 className="text-2xl md:text-3xl lg:text-[2.5rem] font-medium text-white font-geistMono mb-2">820M</h4>
-                  <p className="opacity-70 text-white text-base">Unique wallets active globally</p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Card 2 */}
-            <motion.div
-            initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-             className="relative group border border-[#ffffff1a] bg-[#0A0A0A] rounded-2xl p-6">
-              <div className="relative flex gap-4">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6">
-                  <Image src="/multi-chain.svg" alt="Turning Trust Into Utility" width="50" height="50" className=''/>
-                </div>
-                <div>
-                  <h4 className="text-2xl md:text-3xl lg:text-[2.5rem] font-medium text-white font-geistMono mb-2">12+</h4>
-                  <p className="opacity-70 text-white text-base">Multi-Chain Coverage</p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Card 3 */}
-            <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            className="relative group border border-[#ffffff1a] bg-[#0A0A0A] rounded-2xl p-6">
-              <div className="relative flex gap-4">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6">
-                  <Image src="/integration-plug.svg" alt="Turning Trust Into Utility" width="50" height="50" className=''/>
-                </div>
-                <div>
-                  <h4 className="text-2xl md:text-3xl lg:text-[2.5rem] font-medium text-white font-geistMono mb-2">9000</h4>
-                  <p className="opacity-70 text-white text-base">Makes trust score easy to integrate</p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-
-      {/* Section 2 */}
-      <section className="px-5 py-20 max-w-screen-xl mx-auto">
-        <div className="flex flex-wrap justify-between items-start gap-2">
-           <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }} className="max-w-[38rem]">
-
-                <h2 className="text-[1.5rem] md:text-[1.875rem] lg:text-[2.5rem] font-medium text-white mb-6 leading-tight"> Reputation backbone For decentralized applications</h2>
-                <p className="opacity-70 text-white text-base">
-                  A public good that bridges fragmented ecosystems through a unified, privacy-preserving trust layer.
+        {/* Section 1 */}
+        <section className="relative pb-10 md:pb-20 pt-10 md:pt-40 overflow-hidden">
+          <div className="relative container max-w-screen-xl mx-auto px-5">
+            <div className="text-center max-w-2xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.8 }}
+              >
+                <h2 className="text-2xl md:text-3xl lg:text-[2.5rem] font-medium mb-8 text-white ">
+                  Turning Trust Into Utility
+                </h2>
+                <p className="opacity-70 text-base text-white">
+                  Converts multi-chain activity into a portable, privacy-first
+                  trustscore. Share a proof of your history to qualify for
+                  better terms across multi DeFi applications and Loyalty
+                  Rewards.
                 </p>
               </motion.div>
-              <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}>
-              <button className="bg-[#0CFF85] hover:bg-[#0CFF85]/80 text-black font-semibold px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
-                Register Your ID
-              </button>
-              </motion.div>
-        </div>
+            </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch mt-20">
-          {/* Wallet ID */}
-          <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}>
-            <div className='px-6 pb-7 pt-10 border border-[#ffffff1a] rounded-2xl bg-gradient-to-br from-[#ffffff0f] to-transparent'>
-              <Image src="/wallet-id.png" alt="Turning Trust Into Utility" width="270" height="252" className='w-full h-[252px] object-contain mb-10'/>
-              <h3 className="text-white text-2xl font-medium mb-1">
-                {"Wallet ID"}
-              </h3>
-              <p className="text-white opacity-70 text-sm">
-                {"Your unique on-chain identity, securing reputation without depending on personal information."}
-              </p>
-            </div>
-          </motion.div>
-          <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }} className='col-span-2'>
-            <div className='px-6 pb-7 pt-10 border border-[#ffffff1a] rounded-2xl bg-gradient-to-br from-[#ffffff0f] to-transparent h-full'>
-              <Image src="/zk-privacy.png" alt="Turning Trust Into Utility" width="565" height="252" className='w-full h-[252px] object-contain mb-10'/>
-              <h3 className="text-white text-2xl font-medium mb-1">
-                {"ZK privacy"}
-              </h3>
-              <p className="text-white opacity-70 text-sm">
-                {"Prove your reputation without revealing sensitive transaction details. "}
-              </p>
-            </div>
-          </motion.div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch mt-6">
-          {/* Wallet ID */}
-          <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }} className='col-span-2'>
-            <div className='px-6 pb-7 pt-10 border border-[#ffffff1a] rounded-2xl bg-gradient-to-br from-[#ffffff0f] to-transparent h-full'>
-              <Image src="/realtime-analytics.svg" alt="Real Time Analytics" width="693" height="252" className='w-full h-[252px] object-contain'/>
-              <h3 className="text-white text-2xl font-medium mb-1">
-                {"Real Time Analytics"}
-              </h3>
-              <p className="text-white opacity-70 text-sm">
-                {"Monitor reputation metrics in real-time with our advanced analytics dashboard."}
-              </p>
-            </div>
-          </motion.div>
-          <motion.div initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}>
-            <div className='px-6 pb-7 pt-10 border border-[#ffffff1a] rounded-2xl bg-gradient-to-br from-[#ffffff0f] to-transparent'>
-              <Image src="/achievements.svg" alt="Achievements" width="270" height="252" className='w-full h-[252px] object-contain'/>
-              <h3 className="text-white text-2xl font-medium mb-1">
-                {"Achievements"}
-              </h3>
-              <p className="text-white opacity-70 text-sm">
-                {"Gamified reputation building with rewards and special recognition."}
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-      
-      {/* Section 3 */}
-      <section className="py-20 bg-[url('/code-block-bg.png')] bg-contain bg-left bg-no-repeat">
-        <div className='px-5  max-w-screen-xl mx-auto'>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
-              {/* Left Side */}
-            <div>
-              <div className="max-w-[31.25rem]">
-                <h2 className="text-[24px] md:text-[30px] lg:text-[2.5rem] font-medium text-white mb-6 leading-tight">Easy Integration With ZKScore SDK</h2>
-                <p className="opacity-70 text-white text-base">ZKScore’s SDK makes it seamless to integrate reputation data into
-                  your dApp or protocol. In just a few lines of code, you can access
-                  wallet trust scores, request zk-proofs, and tailor experiences for
-                  users based on verified credibility.
-                  </p>
-                
-                <button className="bg-[#0CFF85] hover:bg-[#0CFF85]/80 text-black font-semibold px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 mt-14">
-                  Build with ZKScore
-                </button>
-              </div>
-            </div>
-            {/* Right Side Code Editor */}
-            <div className="codeBlock">
-              {codeBlocks.map((block, index) => (
-                <div 
-                  key={index}
-                  className={`relative bg-[#ffffff0a] p-6 border rounded-lg border-[#ffffff1a] ${index < codeBlocks.length - 1 ? 'mb-6' : ''}`}
-                >
-                  {/* Header with title and copy button */}
-                  <div className="flex items-center justify-between mb-8">
-                    <h2 className="text-white text-xl font-medium">
-                      {block.title}
-                    </h2>
-                    <button
-                      onClick={() => handleCopy(block.code, index)}
-                      className="p-2 hover:bg-white/5 rounded-lg transition-colors flex-shrink-0"
-                      aria-label="Copy to clipboard"
-                    >
-                      {copiedIndex === index ? (
-                        <svg className="w-5 h-5 text-[#0CFF85]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                      ) : (
-                        <svg className="w-5 h-5 text-gray-400 hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                        </svg>
-                      )}
-                    </button>
-                  </div>
-
-                  {/* Code content */}
-                  <pre className="text-[#0CFF85] text-sm font-geistMono overflow-x-auto leading-relaxed">
-                    {block.code}
-                  </pre>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 4 */}
-      <section className="px-5 pt-14 pb-24 max-w-screen-xl mx-auto">
-        <div className="flex justify-between items-start mb-10">
-          <h2 className="text-[1.5rem] md:text-[1.875rem] lg:text-[2.5rem] font-medium text-white mb-6 leading-tight max-w-[31.438rem] w-full">Unlock capital, not your data</h2>
-          <p className="opacity-70 text-white text-base basis-2/4 max-w-[38rem] w-full">
-              ZKScore is more than a credit score for Web3. It’s a trust layer
-              designed for different groups in the ecosystem, each with unique
-              ways to benefit from portable zk-verified reputation.
-          </p>
-        </div>
-        <div className="">
-          <div className="flex items-center mb-6 bg-black rounded-md">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`text-base px-5 py-4 rounded-lg text-center border-none
-                ${
-                  activeTab === tab.id
-                    ? "bg-[#ffffff1a] text-white font-medium"
-                    : "bg-transparent text-white opacity-70 font-normal"
-                }`}
+            <div className="relative my-20">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
               >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-          {/* Protocols Sec Left */}
-          <div className="grid lg:grid-cols-2 gap-12 items-start px-10 py-14 border border-[#ffffff1a] rounded-3xl bg-[#ffffff0a]">
-            <div className="">
-              <h2 className="text-[32px] text-white font-medium">{tabContent[activeTab].title}</h2>
-              <p className="text-white opacity-70 mt-4">
-                  {tabContent[activeTab].description}
-              </p>
-              <div className="grid grid-cols-2 gap-y-7 gap-x-4 mt-10">
-                {tabContent[activeTab].features.map((feature, index) =>  (
-                  <div key={index}>
-                    <h3 className="text-white font-medium text-base mb-2">
-                      {feature.title}
-                    </h3>
-                    <p className="text-white opacity-70 text-sm leading-relaxed">
-                      {feature.description}
+                <Image
+                  src="/turning-trust-large.svg"
+                  alt="Turning Trust Into Utility"
+                  width="1074"
+                  height="400"
+                  className="w-full h-full object-contain hidden md:block"
+                />
+                <Image
+                  src="/turning-trust.svg"
+                  alt="Turning Trust Into Utility"
+                  width="419"
+                  height="1280"
+                  className="w-full h-full object-contain block md:hidden"
+                />
+              </motion.div>
+            </div>
+
+            {/* Stats Cards */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {/* Card 1 */}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="relative group border border-[#ffffff1a] bg-[#0A0A0A] rounded-2xl p-6"
+              >
+                <div className="relative flex gap-4">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6">
+                    <Image
+                      src="/wallet.svg"
+                      alt="Turning Trust Into Utility"
+                      width="50"
+                      height="50"
+                      className=""
+                    />
+                  </div>
+                  <div>
+                    <h4 className="text-2xl md:text-3xl lg:text-[2.5rem] font-medium text-white font-geistMono mb-2">
+                      820M
+                    </h4>
+                    <p className="opacity-70 text-white text-base">
+                      Unique wallets active globally
                     </p>
                   </div>
+                </div>
+              </motion.div>
+
+              {/* Card 2 */}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="relative group border border-[#ffffff1a] bg-[#0A0A0A] rounded-2xl p-6"
+              >
+                <div className="relative flex gap-4">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6">
+                    <Image
+                      src="/multi-chain.svg"
+                      alt="Turning Trust Into Utility"
+                      width="50"
+                      height="50"
+                      className=""
+                    />
+                  </div>
+                  <div>
+                    <h4 className="text-2xl md:text-3xl lg:text-[2.5rem] font-medium text-white font-geistMono mb-2">
+                      12+
+                    </h4>
+                    <p className="opacity-70 text-white text-base">
+                      Multi-Chain Coverage
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Card 3 */}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="relative group border border-[#ffffff1a] bg-[#0A0A0A] rounded-2xl p-6"
+              >
+                <div className="relative flex gap-4">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6">
+                    <Image
+                      src="/integration-plug.svg"
+                      alt="Turning Trust Into Utility"
+                      width="50"
+                      height="50"
+                      className=""
+                    />
+                  </div>
+                  <div>
+                    <h4 className="text-2xl md:text-3xl lg:text-[2.5rem] font-medium text-white font-geistMono mb-2">
+                      9000
+                    </h4>
+                    <p className="opacity-70 text-white text-base">
+                      Makes trust score easy to integrate
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Section 2 */}
+        <section className="px-5 py-10 md:py-20 max-w-screen-xl mx-auto">
+          <div className="flex flex-wrap justify-between items-start gap-2">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="max-w-[38rem]"
+            >
+              <h2 className="text-[1.5rem] md:text-[1.875rem] lg:text-[2.5rem] font-medium text-white mb-6 leading-tight">
+                {" "}
+                Reputation backbone For decentralized applications
+              </h2>
+              <p className="opacity-70 text-white text-base">
+                A public good that bridges fragmented ecosystems through a
+                unified, privacy-preserving trust layer.
+              </p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <button className="bg-[#0CFF85] hover:bg-[#0CFF85]/80 text-black font-semibold px-8 py-3 mt-3 md:mt-0 rounded-lg transition-all duration-300 transform hover:scale-105">
+                Register Your ID
+              </button>
+            </motion.div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch mt-20">
+            {/* Wallet ID */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <div className="px-6 pb-7 pt-10 border border-[#ffffff1a] rounded-2xl bg-gradient-to-br from-[#ffffff0f] to-transparent">
+                <Image
+                  src="/wallet-id.svg"
+                  alt="Turning Trust Into Utility"
+                  width="270"
+                  height="252"
+                  className="w-full h-[252px] object-contain mb-10"
+                />
+                <h3 className="text-white text-2xl font-medium mb-1">
+                  {"Wallet ID"}
+                </h3>
+                <p className="text-white opacity-70 text-sm">
+                  {
+                    "Your unique on-chain identity, securing reputation without depending on personal information."
+                  }
+                </p>
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="md:col-span-2"
+            >
+              <div className="px-6 pb-7 pt-10 border border-[#ffffff1a] rounded-2xl bg-gradient-to-br from-[#ffffff0f] to-transparent h-full">
+                <Image
+                  src="/zk-privacy.svg"
+                  alt="Turning Trust Into Utility"
+                  width="565"
+                  height="252"
+                  className="w-full h-[252px] object-contain mb-10"
+                />
+                <h3 className="text-white text-2xl font-medium mb-1">
+                  {"ZK privacy"}
+                </h3>
+                <p className="text-white opacity-70 text-sm">
+                  {
+                    "Prove your reputation without revealing sensitive transaction details. "
+                  }
+                </p>
+              </div>
+            </motion.div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch mt-6">
+            {/* Wallet ID */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="md:col-span-2"
+            >
+              <div className="px-6 pb-7 pt-10 border border-[#ffffff1a] rounded-2xl bg-gradient-to-br from-[#ffffff0f] to-transparent h-full">
+                <Image
+                  src="/realtime-analytics.svg"
+                  alt="Real Time Analytics"
+                  width="693"
+                  height="252"
+                  className="w-full h-[252px] object-contain"
+                />
+                <h3 className="text-white text-2xl font-medium mb-1">
+                  {"Real Time Analytics"}
+                </h3>
+                <p className="text-white opacity-70 text-sm">
+                  {
+                    "Monitor reputation metrics in real-time with our advanced analytics dashboard."
+                  }
+                </p>
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <div className="px-6 pb-7 pt-10 border border-[#ffffff1a] rounded-2xl bg-gradient-to-br from-[#ffffff0f] to-transparent">
+                <Image
+                  src="/achievements.svg"
+                  alt="Achievements"
+                  width="270"
+                  height="252"
+                  className="w-full h-[252px] object-contain"
+                />
+                <h3 className="text-white text-2xl font-medium mb-1">
+                  {"Achievements"}
+                </h3>
+                <p className="text-white opacity-70 text-sm">
+                  {
+                    "Gamified reputation building with rewards and special recognition."
+                  }
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Section 3 */}
+        <section className="py-10 md:py-20 bg-[url('/code-block-bg.png')] bg-contain bg-left bg-no-repeat">
+          <div className="px-5 max-w-screen-xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+              {/* Left Side */}
+              <div>
+                  <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="max-w-[31.25rem]"
+              >
+                  <h2 className="text-[24px] md:text-[30px] lg:text-[2.5rem] font-medium text-white mb-6 leading-tight">
+                    Easy Integration With ZKScore SDK
+                  </h2>
+                  <p className="opacity-70 text-white text-base">
+                    ZKScore’s SDK makes it seamless to integrate reputation data
+                    into your dApp or protocol. In just a few lines of code, you
+                    can access wallet trust scores, request zk-proofs, and
+                    tailor experiences for users based on verified credibility.
+                  </p>
+
+                  <button className="bg-[#0CFF85] hover:bg-[#0CFF85]/80 text-black font-semibold px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 mt-4 md:mt-14">
+                    Build with ZKScore
+                  </button>
+              </motion.div>
+              </div>
+              {/* Right Side Code Editor */}
+              <div className="codeBlock">
+                {codeBlocks.map((block, index) => (
+                  <motion.div
+                  key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className={`relative bg-[#ffffff0a] p-6 border rounded-lg border-[#ffffff1a] ${
+                      index < codeBlocks.length - 1 ? "mb-6" : ""
+                    }`}
+              >
+                {/* Header with title and copy button */}
+                    <div className="flex items-center justify-between mb-8">
+                      <h2 className="text-white text-xl font-medium">
+                        {block.title}
+                      </h2>
+                      <button
+                        onClick={() => handleCopy(block.code, index)}
+                        className="p-2 hover:bg-white/5 rounded-lg transition-colors flex-shrink-0"
+                        aria-label="Copy to clipboard"
+                      >
+                        {copiedIndex === index ? (
+                          <svg
+                            className="w-5 h-5 text-[#0CFF85]"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                        ) : (
+                          <svg
+                            className="w-5 h-5 text-gray-400 hover:text-white transition-colors"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                            />
+                          </svg>
+                        )}
+                      </button>
+                    </div>
+
+                    {/* Code content */}
+                    <pre className="text-[#0CFF85] text-sm font-geistMono overflow-x-auto leading-relaxed">
+                      {block.code}
+                    </pre>
+                  </motion.div>
                 ))}
               </div>
             </div>
-            {/* Protocols Sec Right */}
-            {/* border border-[#ffffff1a] rounded-2xl bg-gradient-to-br from-[#0CFF850a] to-[#0000000a] p-6 flex justify-center items-center h-full */}
-            <div className="flex justify-center lg:justify-end">
-              <Image src="/tabs-switch.png" alt="Tabs" width="568" height="360" className='w-full h-[340px] object-contain object-right'/>
-            </div>
           </div>
+        </section>
 
-          <div className="flex items-center justify-between px-10 py-4 mt-6 border border-[#ffffff1a] bg-[#ffffff0a] rounded-3xl">
-            <div className="flex items-center gap-6">
-              <h2 className="text-white text-[64px] font-geistMono">$300</h2>{" "}
-              <p className="text-white text-xl font-medium">Starter Credits</p>
-            </div>
-            <div className="flex gap-10 text-center items-center">
-              <p className="rounded-md text-white opacity-70">
-                No credit required
+        {/* Section 4 */}
+        <section className="px-5 pt-6 md:pt-14 pb-12 md:pb-24 max-w-screen-xl mx-auto">
+          <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="flex justify-between flex-wrap items-start mb-10"
+              >
+              <h2 className="text-[1.5rem] md:text-[1.875rem] lg:text-[2.5rem] font-medium text-white mb-3 md:mb-6 leading-tight max-w-[31.438rem] w-full">
+                Unlock capital, not your data
+              </h2>
+              <p className="opacity-70 text-white text-base md:basis-2/4 max-w-[38rem] w-full">
+                ZKScore is more than a credit score for Web3. It’s a trust layer
+                designed for different groups in the ecosystem, each with unique
+                ways to benefit from portable zk-verified reputation.
               </p>
-              <button className="bg-[#0CFF85] hover:bg-[#0CFF85]/80 text-black font-semibold px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
-                  Join Waitlist
-                </button>
-            </div>
-          </div>
-        </div>
-      </section>
+              </motion.div>
 
-      {/* Section 5 */}
-      <section className="px-5 py-10 max-w-screen-xl mx-auto">
-        <div className="max-w-[38rem]">
-          <h2 className="text-[1.5rem] md:text-[1.875rem] lg:text-[2.5rem] font-medium text-white mb-6 leading-tight">ZKScore For Public Good</h2>
-          <p className="opacity-70 text-white text-base">
-            In Web3, every wallet starts from zero, no portable reputation, no
-            shared benchmark of reliability. This creates inefficiencies:
-            over-collateralized lending, sybil attacks in governance, spam in
-            airdrops, and high barriers to real-world adoption.
-          </p>
-        </div>
-
-        {/* Feature Section with Flex */}
-        <div className="mt-20 grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {features.map((item, index) => (
-            <div key={index} className='px-6 pb-7 pt-10 border border-[#ffffff1a] rounded-2xl bg-gradient-to-br from-[#ffffff0f] to-transparent'>
-              <h3 className="text-white text-2xl font-medium mb-4">
-                {item.title}
-              </h3>
-              <p className="text-white opacity-70 text-sm w-full max-w-64 leading-normal">
-                {item.description}
-              </p>
-              <Image src={item.image} alt={item.title} width="693" height="252" className='w-[528px] -mt-16 -mb-20 float-right'/>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Section 6 */}
-      <section className="px-5 py-10 max-w-screen-xl mx-auto">
-        <div className="text-center">
-
-          <h2 className="text-[1.5rem] md:text-[1.875rem] lg:text-[2.5rem] font-medium text-white mb-6 leading-tight">From Wallet Activity <br /> To Verifiable Trust.</h2>
-          <p className="opacity-70 text-white text-base mb-20 max-w-5xl mx-auto">
-             ZKScore turns everyday onchain actions into a portable trustscore
-            that protocols and apps can use for lending, rewards, governance,
-            and more. Built with zero-knowledge proofs, your reputation remains
-            private while still being fully verifiable.
-          </p>
-
-          {/* Video Container */}
-          <div className="relative aspect-video rounded-3xl overflow-hidden border border-[#ffffff1a] bg-[#ffffff0a]">
-
-            {/* Logo and Text positioned left of play button */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="flex items-center gap-6">
-                <div className="absolute inset-0 top-2/4 left-2/4 transform -translate-x-20 -translate-y-9 ">
-                  <Image src="/logo.png" alt="logo" width="160" height="64" />
-                </div>
-                {/* Play Button */}
+          <div className="">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="flex items-center mb-6 bg-black rounded-md flex-wrap"
+              >
+              {tabs.map((tab) => (
                 <button
-                  onClick={handleVideoPlay}
-                  className="relative group"
-                  aria-label="Play video"
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`text-base px-5 py-4 rounded-lg text-center border-none
+                  ${
+                    activeTab === tab.id
+                      ? "bg-[#ffffff1a] text-white font-medium"
+                      : "bg-transparent text-white opacity-70 font-normal"
+                  }`}
                 >
-                  {/* Main button */}
-                  <div className="relative w-24 h-24 rounded-full flex items-center justify-center bg-transparent backdrop-blur-sm border border-[#ffffff33] group-hover:border-emerald-500/50 transition-all duration-300">
-                    {/* Play icon */}
-                    <div className="relative ml-1">
-                      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" className="drop-shadow-lg group-hover:scale-110 transition-transform duration-300">
-                        <path d="M10 8L24 16L10 24V8Z" fill="white"/>
-                      </svg>
-                    </div>
-                  </div>
+                  {tab.label}
                 </button>
-              </div>
+              ))}
+            </motion.div>
+            {/* Protocols Sec Left */}
+            <div className="grid lg:grid-cols-2 gap-12 items-start px-6 md:px-10 py-6 md:py-14 border border-[#ffffff1a] rounded-3xl bg-[#ffffff0a]">
+              <motion.div
+               initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+               className="">
+                <h2 className="text-[1.5rem] md:text-[1.5rem] lg:text-[2rem] text-white font-medium">
+                  {tabContent[activeTab].title}
+                </h2>
+                <p className="text-white opacity-70 mt-4">
+                  {tabContent[activeTab].description}
+                </p>
+                <div className="grid grid-cols-2 gap-y-7 gap-x-4 mt-10">
+                  {tabContent[activeTab].features.map((feature, index) => (
+                    <div key={index}>
+                      <h3 className="text-white font-medium text-base mb-2">
+                        {feature.title}
+                      </h3>
+                      <p className="text-white opacity-70 text-sm leading-relaxed">
+                        {feature.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+              {/* Protocols Sec Right */}
+              {/* border border-[#ffffff1a] rounded-2xl bg-gradient-to-br from-[#0CFF850a] to-[#0000000a] p-6 flex justify-center items-center h-full */}
+              {/* <div className="flex justify-center lg:justify-end"> */}
+                <motion.div initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.3 }} className="flex justify-center lg:justify-end">
+                  <Image
+                    src={tabContent[activeTab].diagram}
+                    alt="Tabs"
+                    width="568"
+                    height="360"
+                    className="w-full h-[260px] md:h-[340px] object-contain object-right"
+                  />
+                </motion.div>
+              {/* </div> */}
             </div>
 
-            {/* Optional: Actual video element (hidden until play) */}
-            {isVideoPlaying && (
-              <iframe
-                className="absolute inset-0 w-full h-full"
-                src="https://www.youtube.com/embed/D0UnqGm_miA?si=Ix08PWqqhgdxw52A?autoplay=1"
-                title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            )}
+            <div className="flex items-center justify-between px-10 py-4 mt-6 border border-[#ffffff1a] bg-[#ffffff0a] rounded-3xl flex-col md:flex-row">
+              <motion.div initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+                className="flex items-center gap-6" >
+                  <h2 className="text-white text-[2rem] md:text-[3rem] lg:text-[64px] font-geistMono">$300</h2>{" "}
+                  <p className="text-white text-base md:text-xl font-medium">Starter Credits</p>
+                </motion.div>
+                <motion.div initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+                className="flex items-center gap-6" >
+                <p className="flex gap-10 text-center items-center">
+                  No credit required
+                </p>
+                <button className="bg-[#0CFF85] hover:bg-[#0CFF85]/80 text-black font-semibold px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+                    Join Waitlist
+                  </button>
+              </motion.div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Section 7  */}
-      <section className="px-5 py-20 max-w-screen-xl mx-auto">
-        <div className="text-center mb-20 ">
-          <h2 className="text-[1.5rem] md:text-[1.875rem] lg:text-[2.5rem] font-medium text-white mb-6 leading-tight">
-            Trustscore Through On-Chain Behavior
-          </h2>
-          <p
-            className="max-w-[978px] mx-auto opacity-70 text-white text-base"
-          >
-            A trustscore that grows directly from on-chain behavior. Every
-            wallet has the ability to earn credibility through activity and
-            time, with scores awarded for transactions and wallet age. The
-            result is a score that is fair, transparent, and truly
-            decentralized.
-          </p>
-          
-        </div>
+        {/* Section 5 */}
+        <section className="px-5 py-10 md:py-20  max-w-screen-xl mx-auto">
+            <motion.div initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.2 }} className="max-w-[38rem]">
+            <h2 className="text-[1.5rem] md:text-[1.875rem] lg:text-[2.5rem] font-medium text-white mb-6 leading-tight">
+              ZKScore For Public Good
+            </h2>
+            <p className="opacity-70 text-white text-base">
+              In Web3, every wallet starts from zero, no portable reputation, no
+              shared benchmark of reliability. This creates inefficiencies:
+              over-collateralized lending, sybil attacks in governance, spam in
+              airdrops, and high barriers to real-world adoption.
+            </p>
+          </motion.div>
+
+          {/* Feature Section with Flex */}
+          <div className="mt-20 grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {features.map((item, index) => (
+              <motion.div initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.2 + index * 0.2 }}
+                key={index}
+                className="px-6 pb-7 pt-10 border border-[#ffffff1a] rounded-2xl bg-gradient-to-br from-[#ffffff0f] to-transparent"
+                >
+                <h3 className="text-white text-2xl font-medium mb-4">
+                  {item.title}
+                </h3>
+                <p className="text-white opacity-70 text-sm w-full max-w-64 leading-normal ">
+                  {item.description}
+                </p>
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  width={693}
+                  height={252}
+                  className="w-[528px] md:-mt-16 -mb-20 float-right object-contain"
+                />
+                </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* Section 6 */}
+        <section className="px-5 py-10 max-w-screen-xl mx-auto">
+          <div className="text-center">
+            <motion.div initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                >
+
+                <h2 className="text-[1.5rem] md:text-[1.875rem] lg:text-[2.5rem] font-medium text-white mb-6 leading-tight">
+                  From Wallet Activity <br /> To Verifiable Trust.
+                </h2>
+                <p className="opacity-70 text-white text-base mb-20 max-w-5xl mx-auto">
+                  ZKScore turns everyday onchain actions into a portable trustscore
+                  that protocols and apps can use for lending, rewards, governance,
+                  and more. Built with zero-knowledge proofs, your reputation
+                  remains private while still being fully verifiable.
+                </p>
+                </motion.div>
+
+            {/* Video Container */}
+            <div className="relative aspect-video rounded-3xl overflow-hidden border border-[#ffffff1a] bg-[#ffffff0a]">
+              {/* Logo and Text positioned left of play button */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="flex items-center gap-6">
+                  <div className="absolute inset-0 top-2/4 left-2/4 transform -translate-x-20 -translate-y-9 ">
+                    <Image src="/logo.png" alt="logo" width="160" height="64" />
+                  </div>
+                  {/* Play Button */}
+                  <button
+                    onClick={handleVideoPlay}
+                    className="relative group"
+                    aria-label="Play video"
+                  >
+                    {/* Main button */}
+                    <div className="relative w-24 h-24 rounded-full flex items-center justify-center bg-transparent backdrop-blur-sm border border-[#ffffff33] group-hover:border-emerald-500/50 transition-all duration-300">
+                      {/* Play icon */}
+                      <div className="relative ml-1">
+                        <svg
+                          width="32"
+                          height="32"
+                          viewBox="0 0 32 32"
+                          fill="none"
+                          className="drop-shadow-lg group-hover:scale-110 transition-transform duration-300"
+                        >
+                          <path d="M10 8L24 16L10 24V8Z" fill="white" />
+                        </svg>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+              </div>
+
+              {/* Optional: Actual video element (hidden until play) */}
+              {isVideoPlaying && (
+                <iframe
+                  className="absolute inset-0 w-full h-full"
+                  src="https://www.youtube.com/embed/D0UnqGm_miA?si=Ix08PWqqhgdxw52A?autoplay=1"
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* Section 7  */}
+        <section className="px-5 py-10 md:py-20 max-w-screen-xl mx-auto">
+          <div className="text-center mb-20 ">
+            <motion.div initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                >
+
+                <h2 className="text-[1.5rem] md:text-[1.875rem] lg:text-[2.5rem] font-medium text-white mb-6 leading-tight">
+                  Trustscore Through On-Chain Behavior
+                </h2>
+                <p className="max-w-[978px] mx-auto opacity-70 text-white text-base">
+                  A trustscore that grows directly from on-chain behavior. Every
+                  wallet has the ability to earn credibility through activity and
+                  time, with scores awarded for transactions and wallet age. The
+                  result is a score that is fair, transparent, and truly
+                  decentralized.
+                </p>
+                </motion.div>
+          </div>
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-y-10 pt-6 border-t border-[#ffffff33]">
             {data.map((item, index) => (
-              <div
-                className="px-4 pb-4 border-r last:border-r-0 lg:[&:nth-child(4n)]:border-r-0 relative border-[#ffffff33] before:content-[''] before:absolute before:right-0 before:-bottom-5 before:w-full before:h-[1px] before:bg-[#ffffff33]"
+              <motion.div initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.2 + index * 0.2 }}
                 key={index}
-              >
+                className="px-4 pb-4 md:border-r last:border-r-0 lg:[&:nth-child(4n)]:border-r-0 relative border-[#ffffff33] 
+        before:content-[''] before:absolute before:right-0 before:-bottom-5 before:w-full before:h-[1px] before:bg-[#ffffff33]"
+                >
                 <img
-                  className="w-12 mb-8"
+                  className="w-12 mb-4 md:mb-8"
                   src={item.image}
                   alt={item.title}
                 />
                 <div className="flex-1">
-                  <h3 className="text-white text-xl mb-4">
+                  <h3 className="text-white text-lg md:text-xl mb-2 md:mb-4">
                     {item.title}
                   </h3>
-                  <p
-                    className="text-[#b2b4b3] text-base mb-8"
-                  >
+                  <p className="text-[#b2b4b3] text-base mb-4 md:mb-8">
                     {item.description}
                   </p>
                 </div>
-                <button className="px-3 py-1 text-base text-center rounded-md bg-[#ffffff1a] hover:bg-neutral-700 border border-neutral-700 text-white opacity-70">
+                <button className="px-3 py-1 text-base text-center rounded-md bg-[#ffffff1a] hover:bg-neutral-700 border border-neutral-700 text-white opacity-70 ">
                   {item.btnText}
                 </button>
-              </div>
+                </motion.div>
             ))}
           </div>
-      </section>
+        </section>
 
-      {/* Section 8  */}
-      <section className="px-5 py-20 max-w-screen-xl mx-auto">
-        <div className="text-center mb-20 ">
-          <h2 className="text-[1.5rem] md:text-[1.875rem] lg:text-[2.5rem] font-medium text-white mb-6 leading-tight">
-            Meet Macro most trusted partners
-          </h2>
-          <p
-            className="max-w-[978px] mx-auto opacity-70 text-white text-base"
-          >
-            Lorem ipsum dolor sit amet consectetur. Vitae euismod nulla erat morbi amet duis mattis. 
-            Ut neque facilisis etiam dolor mauris leo nisl. Sed dictum a eget vestibulum vel vitae et enim turpis.
-             Nunc facilisi sed dignissim purus erat adipiscing adipiscing pellentesque.
-          </p>
-        </div>
-        <ClientsLogo />
-      </section>
-
-      {/* Section 9 */}
-      <section className="py-20 bg-[url('/green-circle-background.png')] bg-contain bg-right bg-no-repeat">
-        <div className="text-center mb-20 px-5 max-w-screen-xl mx-auto ">
-          <h2 className="text-[1.5rem] md:text-[1.875rem] lg:text-[2.5rem] font-medium text-white mb-6 leading-tight">
-            Frequently Asked Questions
-          </h2>
-        </div>
-
-        <div className="space-y-4 px-5 max-w-screen-xl mx-auto">
-          {faqs.map((faq, index) => (
-
-          <details
-            key={index}
-            className="group border border-[#ffffff1a] bg-[#ffffff0f] rounded-2xl p-6 [&_summary::-webkit-details-marker]:hidden"
-            open={index === 0}
-          >
-            <summary className="flex items-center justify-between gap-1.5 text-white">
-              <h2 className="text-xl font-medium">{faq.title}</h2>
-
-              <div className='w-11 h-11 flex items-center justify-center rounded-md bg-[#ffffff1a]'>
-                <svg
-                  className="size-5 shrink-0 transition-transform duration-300 group-open:-rotate-180"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+        {/* Section 8  */}
+        <section className="px-5 py-10 md:py-20 max-w-screen-xl mx-auto">
+          <div className="text-center mb-10 md:mb-20 ">
+            <motion.div initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
-            </summary>
 
-            <p className="pt-4 text-white opacity-70">
-              {faq.description}
-            </p>
-          </details>
-          ))}
+              <h2 className="text-[1.5rem] md:text-[1.875rem] lg:text-[2.5rem] font-medium text-white mb-6 leading-tight">
+                Meet Macro most trusted partners
+              </h2>
+              <p className="max-w-[978px] mx-auto opacity-70 text-white text-base">
+                Lorem ipsum dolor sit amet consectetur. Vitae euismod nulla erat
+                morbi amet duis mattis. Ut neque facilisis etiam dolor mauris leo
+                nisl. Sed dictum a eget vestibulum vel vitae et enim turpis. Nunc
+                facilisi sed dignissim purus erat adipiscing adipiscing
+                pellentesque.
+              </p>
+                </motion.div>
+          </div>
+          <ClientsLogo />
+        </section>
 
-        </div>
+        {/* Section 9 */}
+        <section className="py-10 md:py-20 bg-[url('/green-circle-background.png')] bg-contain bg-right bg-no-repeat">
+          <div className="text-center mb-10 md:mb-20 px-5 max-w-screen-xl mx-auto ">
+            <motion.div initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                >
 
-      </section>
+                  <h2 className="text-[1.5rem] md:text-[1.875rem] lg:text-[2.5rem] font-medium text-white leading-tight">
+                    Frequently Asked Questions
+                  </h2>
+                </motion.div>
+          </div>
 
-      {/* Footer */}
-      <footer className="py-20 bg-[#ffffff0a]">
-        <div className="px-5 max-w-screen-xl mx-auto">
-          <div className="flex justify-between gap-10">
-            <div className="w-[588px]">
-              <Image src="/logo.png" alt="logo" width="160" height="64" />
-              <div className="">
-                <h3 className="text-2xl text-white font-medium mt-6 mb-6">
-                  Privacy-first trust for every wallet.
-                </h3>
-                <p className="w-[588px] text-[16px] text-white opacity-70">
-                  be the first to know about new features, upcoming events, and
-                  everything happening in the world of zKScore.
-                </p>
-                <div className="w-[588px] mt-3 flex justify-center items-center bg-[#ffffff0a] p-[6px] rounded-lg" style={{
-                  boxShadow: 'inset 0 0 8px 0 rgba(255, 255, 255, 0.1)'
-                }}>
-                  <input
-                    type="email"
-                    placeholder="Enter Your Email"
-                    className="
+          <div className="space-y-4 px-5 max-w-screen-xl mx-auto">
+            {faqs.map((faq, index) => (
+              <details
+                key={index}
+                className="group border border-[#ffffff1a] bg-[#ffffff0f] rounded-2xl p-6 [&_summary::-webkit-details-marker]:hidden"
+                open={index === 0}
+              >
+                <summary className="flex items-center justify-between gap-1.5 text-white">
+                  <h2 className="text-xl font-medium">{faq.title}</h2>
+
+                  <div className="w-11 h-11 flex items-center justify-center rounded-md bg-[#ffffff1a]">
+                    <svg
+                      className="size-5 shrink-0 transition-transform duration-300 group-open:-rotate-180"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </div>
+                </summary>
+
+                <p className="pt-4 text-white opacity-70">{faq.description}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="py-10 md:py-20 bg-[#ffffff0a]">
+          <div className="px-5 max-w-screen-xl mx-auto">
+            <div className="flex justify-between flex-wrap gap-10">
+              <div className="max-w-[588px] w-full">
+                <Image src="/logo.png" alt="logo" width="160" height="64" />
+                <div className="">
+                  <h3 className="text-2xl text-white font-medium mt-6 mb-6">
+                    Privacy-first trust for every wallet.
+                  </h3>
+                  <p className="text-base text-white opacity-70">
+                    be the first to know about new features, upcoming events,
+                    and everything happening in the world of zKScore.
+                  </p>
+                  <div
+                    className="mt-3 flex flex-wrap md:flex-nowrap justify-center items-center bg-[#ffffff0a] p-[6px] rounded-lg"
+                    style={{
+                      boxShadow: "inset 0 0 8px 0 rgba(255, 255, 255, 0.1)",
+                    }}
+                  >
+                    <input
+                      type="email"
+                      placeholder="Enter Your Email"
+                      className="
                     bg-transparent 
                     w-[588px]
-                    px-[20px] 
-                    text-[#fff] 
+                    px-[20px]
+                    py-4
+                    md:py-0
+                    text-white 
                     placeholder:text-[#7a7a7a] 
                     outline-none 
                     border-none
                   "
-                  />
-  
-                  <button className="bg-[#0CFF85] w-full max-w-[181px] px-10 text-black flex items-center py-3 text-base rounded-md font-medium">
-                    <span className="mr-2"> Subscribe</span>
-                    <svg 
-                      width="32" 
-                      height="32" 
-                      viewBox="0 0 24 24" 
-                      fill="none" 
-                      className="transition-transform duration-300 group-hover:translate-x-1"
-                    >
-                      <path 
-                        d="M5 12H19M19 12L12 5M19 12L12 19" 
-                        stroke="currentColor" 
-                        strokeWidth="2.5" 
-                        strokeLinecap="round" 
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </button>
+                    />
+
+                    <button className="bg-[#0CFF85] w-full md:max-w-[181px] px-10 text-black flex items-center justify-center py-3 text-base rounded-md font-medium">
+                      <span className="mr-2"> Subscribe</span>
+                      <svg
+                        width="32"
+                        height="32"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        className="transition-transform duration-300 group-hover:translate-x-1"
+                      >
+                        <path
+                          d="M5 12H19M19 12L12 5M19 12L12 19"
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div className="w-[532px] flex flex-wrap gap-4 md:gap-20">
+                <div className="w-[130px] md:w-[102px]">
+                  <h3 className="font-semibold text-xl text-white mb-6">
+                    Products
+                  </h3>
+                  <ul className="space-y-3 list-none text-white opacity-70">
+                    <li>Overview</li>
+                    <li>How It Works</li>
+                    <li>Integrations</li>
+                    <li>Docs</li>
+                    <li>API Access</li>
+                  </ul>
+                </div>
+
+                {/* ECOSYSTEM */}
+                <div className="w-[170px] md:w-[149px]">
+                  <h3 className="font-semibold text-xl text-white mb-6">
+                    Ecosystem
+                  </h3>
+                  <ul className="space-y-3 text-white opacity-70 list-none">
+                    <li>For DAOs</li>
+                    <li>For DeFi Platforms</li>
+                    <li>For Wallets</li>
+                    <li>Partners</li>
+                    <li>Community Grants</li>
+                  </ul>
+                </div>
+
+                {/* COMPANY */}
+                <div className="w-[80px] md:w-[107px]">
+                  <h3 className="font-semibold text-xl text-white mb-6">
+                    Company
+                  </h3>
+                  <ul className="space-y-3 list-none text-white opacity-70">
+                    <li>About</li>
+                    <li>Blog</li>
+                    <li>Careers</li>
+                    <li>Terms</li>
+                  </ul>
                 </div>
               </div>
             </div>
-            <div className="w-[532px] flex gap-20">
-              <div className="w-[102px]">
-                <h3 className="font-semibold text-xl text-white mb-6">
-                  Products
-                </h3>
-                <ul
-                  className="space-y-3 list-none text-white opacity-70"
-                >
-                  <li>Overview</li>
-                  <li>How It Works</li>
-                  <li>Integrations</li>
-                  <li>Docs</li>
-                  <li>API Access</li>
-                </ul>
-              </div>
-  
-              {/* ECOSYSTEM */}
-              <div className="w-[149px]">
-                <h3 className="font-semibold text-xl text-white mb-6">
-                  Ecosystem
-                </h3>
-                <ul
-                  className="space-y-3 text-white opacity-70 list-none"
-                >
-                  <li>For DAOs</li>
-                  <li>For DeFi Platforms</li>
-                  <li>For Wallets</li>
-                  <li>Partners</li>
-                  <li>Community Grants</li>
-                </ul>
-              </div>
-  
-              {/* COMPANY */}
-              <div className="w-[107px]">
-                <h3 className="font-semibold text-xl text-white mb-6">
-                  Company
-                </h3>
-                <ul
-                  className="space-y-3 list-none text-white opacity-70"
-                >
-                  <li>About</li>
-                  <li>Blog</li>
-                  <li>Careers</li>
-                  <li>Terms</li>
-                </ul>
+            {/* BOTTOM FOOTER */}
+            <div className="flex justify-center md:justify-between flex-wrap mt-10 md:mt-20 gap-4 items-center text-white opacity-70">
+              <p className="text-base">Copyright 2025. All Rights Reserved.</p>
+
+              <div className="flex gap-4 md:gap-8">
+                <p>Privacy Policy</p>
+                <p>Terms Of Services</p>
               </div>
             </div>
           </div>
-          {/* BOTTOM FOOTER */}
-          <div className="flex md:flex-row justify-between mt-20 items-center text-white opacity-70">
-            <p className="text-base">Copyright 2025. All Rights Reserved.</p>
-            <div className="flex gap-8">
-              <p>Privacy Policy</p>
-              <p>Terms Of Services</p>
-            </div>
-          </div>
-        </div>
         </footer>
       </div>
     </>

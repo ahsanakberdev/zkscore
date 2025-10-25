@@ -9,6 +9,7 @@ const partners = [
     { name: "Alchemy", logo: "/alchemy.png" },
     { name: "Base", logo: "/base.png" },
     { name: "BNB Chain", logo: "/bnb-chain.png" },
+    { name: "Hyper EVM", logo: "/hyper-evm.svg" },
     // Add more partners as needed
 ];
 

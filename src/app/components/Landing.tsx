@@ -419,7 +419,7 @@ if (userScore.creditRating > 700) {
                   transition={{ duration: 0.8 }}
                   className="text-left"
                 >
-                  <div className="space-y-6 z-10">
+                  <div className="space-y-6 z-10 text-center md:text-left">
                     <h1 className="text-[1.5rem] md:text-[2.5rem] lg:text-[3.25rem] font-medium leading-tight">
                       Trust Layer For Reputation-Based Applications
                     </h1>
@@ -428,14 +428,14 @@ if (userScore.creditRating > 700) {
                       across decentralized finance, marketplaces, loyalty,
                       governance, and social ecosystems.
                     </p>
-                    <div className="flex flex-wrap gap-4 pt-4 w-full">
+                    <div className="flex flex-col md:flex-row gap-4 items-center pt-0 md:pt-4">
                       <button
-                        className="bg-[#0CFF85] hover:bg-[#0CFF85]/80 text-black font-semibold max-w-40 w-full px-4 md:px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 text-sm md:text-base lg:text-base"
+                        className="bg-[#0CFF85] hover:bg-[#0CFF85]/80 text-black font-semibold max-w-44 md:max-w-40 w-full px-4 md:px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 text-sm md:text-base lg:text-base"
                       >
                         Create ID
                       </button>
                       <button
-                        className="bg-neutral-900 hover:bg-neutral-700 border border-neutral-600 text-white font-semibold px-4 md:px-8 py-3 rounded-lg transition-all duration-300 text-sm md:text-base lg:text-base"
+                        className="bg-neutral-900 hover:bg-neutral-700 border border-neutral-600 text-white font-semibold px-4 md:px-8 py-3 max-w-44 w-full md:max-w-full md:w-auto rounded-lg transition-all duration-300 text-sm md:text-base lg:text-base"
                       >
                         Build With ZkScore
                       </button>
@@ -918,7 +918,7 @@ if (userScore.creditRating > 700) {
                     alt="Tabs"
                     width="568"
                     height="360"
-                    className="w-full h-[180px] md:h-[340px] object-contain object-right"
+                    className="w-full h-auto md:h-[340px] object-contain object-right"
                   />
                 </motion.div>
               {/* </div> */}
@@ -974,12 +974,12 @@ if (userScore.creditRating > 700) {
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6, delay: 0.2 + index * 0.2 }}
                 key={index}
-                className="px-6 pb-7 pt-10 border border-[#ffffff1a] rounded-2xl bg-gradient-to-br from-[#ffffff0f] to-transparent"
+                className="px-6 pb-7 pt-10 border border-[#ffffff1a] rounded-2xl text-center md:text-left bg-gradient-to-br from-[#ffffff0f] to-transparent"
                 >
-                <h3 className="text-white text-2xl font-medium mb-4">
+                <h3 className="text-white text-2xl font-medium mb-2 md:mb-4">
                   {item.title}
                 </h3>
-                <p className="text-white opacity-70 text-sm w-full max-w-64 leading-normal ">
+                <p className="text-white opacity-70 text-sm w-full md:max-w-64 leading-normal ">
                   {item.description}
                 </p>
                 <Image
@@ -1090,14 +1090,14 @@ if (userScore.creditRating > 700) {
                 transition={{ duration: 0.6, delay: 0.2 + index * 0.2 }}
                 key={index}
                 className="px-4 pb-4 md:border-r last:border-r-0 lg:[&:nth-child(4n)]:border-r-0 relative border-[#ffffff33] 
-        before:content-[''] before:absolute before:right-0 before:-bottom-5 before:w-full before:h-[1px] before:bg-[#ffffff33]"
+        before:content-[''] before:absolute before:right-0 before:-bottom-5 before:w-full before:h-[1px] before:bg-[#ffffff33] text-center md:text-left"
                 >
                 {/* <img
                   className="w-12 mb-4 md:mb-8"
                   src={item.image}
                   alt={item.title}
                 /> */}
-                <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 md:mb-8 shadow-[0_0_4px_rgba(12,255,133,1)] bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-[#272727] to-black to-75%">
+                <div className="w-11 h-11 rounded-xl flex items-center justify-center mx-auto md:ml-0 mb-4 md:mb-8 shadow-[0_0_4px_rgba(12,255,133,1)] bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-[#272727] to-black to-75%">
                   <Image
                     src={item.image}
                     alt={item.title}

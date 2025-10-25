@@ -308,7 +308,7 @@ if (userScore.creditRating > 700) {
         <div className="max-w-screen-xl mx-auto px-5 py-5">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Image src="/logo.png" alt="logo" width="160" height="64" />
+            <Image src="/zkscore-logo.svg" alt="logo" width="160" height="64" />
 
             {/* Desktop Navigation */}
             <motion.nav
@@ -1020,7 +1020,7 @@ if (userScore.creditRating > 700) {
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="flex items-center gap-6">
                   <div className="absolute inset-0 top-2/4 left-2/4 transform -translate-x-20 -translate-y-9 ">
-                    <Image src="/logo.png" alt="logo" width="160" height="64" />
+                    <Image src="/zkscore-logo.svg" alt="logo" width="160" height="64" />
                   </div>
                   {/* Play Button */}
                   <button
@@ -1199,7 +1199,7 @@ if (userScore.creditRating > 700) {
           <div className="px-5 max-w-screen-xl mx-auto">
             <div className="flex justify-between flex-wrap gap-10">
               <div className="max-w-[588px] w-full">
-                <Image src="/logo.png" alt="logo" width="160" height="64" />
+                <Image src="/zkscore-logo.svg" alt="logo" width="160" height="64" />
                 <div className="">
                   <h3 className="text-2xl text-white font-medium mt-6 mb-6">
                     Privacy-first trust for every wallet.

@@ -187,49 +187,49 @@ const data = [
 ];
 const faqs = [
   {
-    title: "What is ZKScore?",
+    title: "What is ZKScore and how does it work?",
     description:
-      "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
+      "ZKScore is a decentralized identity and reputation system. Mint a unique .zks name (like yourname.zks) that serves as your Web3 passport. Your Trust Score is calculated from wallet age, achievements, DeFi activity, and NFT trading—all verified on-chain using zero-knowledge proofs",
   },
   {
-    title: "How does ZKScore protect my privacy?",
+    title: "How do I get started with ZKScore?",
     description:
-      "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
+      "Connect your wallet → Search for a .zks name → Mint it → Activate scoring by signing in. Once activated, your Trust Score updates automatically based on your on-chain activity, and your identity becomes soulbound (non-transferable)",
   },
   {
-    title: "Why is wallet reputation important?",
+    title: "How does the scoring system work?",
     description:
-      "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
+      "Your Trust Score updates automatically based on four key metrics: Wallet Age (based on account history), Achievements (from milestones), DeFi Activity (from protocol interactions), and NFT Trading (from marketplace activity). All activities contribute points with no caps—the more you engage, the higher your score. Scores are calculated in real-time and synced on-chain every 72 hours for permanent verification",
   },
   {
-    title: "Can I use ZKScore across multiple platforms?",
+    title: "What is a Trust Score and why does it matter?",
     description:
-      "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
+      "Your Trust Score represents your Web3 credibility, calculated from: Wallet Age, Achievements, DeFi Activity, and NFT Trading. It unlocks airdrops, reduces DeFi collateral requirements, enables governance participation, and builds trust with collaborators. Scores sync on-chain every 72 hours with an 'On-Chain Verified' badge",
   },
   {
-    title: "What kinds of activities affect my score?",
+    title: "How are scores verified and stored on the blockchain?",
     description:
-      "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
+      "We use a hybrid system: *On-chain* (total score stored in ScoreRegistry smart contract, syncs every 72 hours, cryptographically verified on the blockchain) and *Off-chain* (detailed breakdowns, real-time updates, historical data). This combines blockchain trustlessness with database speed. Verify your score anytime via 'View on Explorer' on your dashboard",
   },
   {
-    title: "How does ZKScore protect user privacy?",
+    title: "What are Achievements and how do I earn them?",
     description:
-      "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
+      "Achievements are verifiable milestones earned through on-chain actions. Examples: Early Adopter (100 pts), Wallet Veteran (150 pts), NFT Collector (200 pts), DeFi Pioneer (250 pts), Referral Champion (100-500 pts). They're automatically detected from your wallet activity and permanently displayed on your profile. Check your dashboard to track progress!",
   },
   {
-    title: "Can projects integrate ZKScore into existing smart contracts?",
+    title: "Can I transfer or sell my .zks identity?",
     description:
-      "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
+      "Yes, but only *before activating scoring*. After minting, your .zks name can be traded like any NFT. However, once you activate scoring (by signing in and building your Trust Score), it becomes a Soulbound Token (SBT) and cannot be transferred or sold. This ensures your reputation remains authentic and prevents fraud",
   },
   {
-    title: "What types of data are used to build a reputation score?",
+    title: "What happens if my .zks identity expires?",
     description:
-      "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
+      "If your identity expires, you retain access to your .zks name, but your scoring will stop and existing Trust Scores will gradually decay. Your name won't be available for others to mint while you still hold it. If you don't activate scoring at all, your name remains yours but you won't earn any Trust Score points.",
   },
   {
-    title: "Is ZKScore compatible with multiple chains?",
+    title: "Is my data private and secure on ZKScore?",
     description:
-      "ZKScore is a decentralized reputation layer that uses zero-knowledge proofs to verify wallet credibility without exposing personal information. It’s like a “trust passport” for Web3.",
+      "Yes! Privacy features include zero-knowledge proofs (prove reputation without revealing details), wallet-based authentication (no email/password needed), and selective disclosure (choose what to share). Security: audited smart contracts, open-source code, non-custodial, GDPR compliant. *Public: .zks name, on-chain score, wallet address. **Private*: score breakdowns, profile info, email (encrypted).",
   },
 ];
 
@@ -301,9 +301,9 @@ if (userScore.creditRating > 700) {
         <section className="relative pt-20 lg:pt-24 overflow-hidden bg-[url('/pattern-dotted.png')] bg-cover bg-center ">
           <motion.header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent backdrop-blur-md `}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
+        // initial={{ y: -100 }}
+        // animate={{ y: 0 }}
+        // transition={{ duration: 0.5 }}
       >
         <div className="max-w-screen-xl mx-auto px-5 py-5">
           <div className="flex items-center justify-between h-16">
@@ -362,7 +362,6 @@ if (userScore.creditRating > 700) {
           </div>
 
           {/* Mobile Menu */}
-          <AnimatePresence>
             {isMobileMenuOpen && (
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
@@ -403,7 +402,6 @@ if (userScore.creditRating > 700) {
                 </nav>
               </motion.div>
             )}
-          </AnimatePresence>
         </div>
       </motion.header>
 
@@ -413,8 +411,8 @@ if (userScore.creditRating > 700) {
               <div className="grid lg:grid-cols-2 gap-2 items-center">
                 {/* Left Content */}
                 <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
                   viewport={{ once: true, amount: 0.2 }}
                   transition={{ duration: 0.8 }}
                   className="text-left"
@@ -929,7 +927,7 @@ if (userScore.creditRating > 700) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex items-center gap-6" >
+                className="flex items-center gap-6 justify-between md:justify-start w-full md:w-auto" >
                   <h2 className="text-white text-[2rem] md:text-[3rem] lg:text-[64px] font-geistMono">$300</h2>{" "}
                   <p className="text-white text-base md:text-xl font-medium">Starter Credits</p>
                 </motion.div>
@@ -1248,6 +1246,21 @@ if (userScore.creditRating > 700) {
                         />
                       </svg>
                     </button>
+                  </div>
+                  {/* social icons */}
+                  <div className="flex items-center gap-3 mt-6">
+                    <a href="#" className="flex items-center justify-center w-8 h-8 bg-white rounded-lg">
+                    <Image src="/facebook.svg" alt="facebook" width="9" height="18" />
+                    </a>
+                    <a href="https://discord.gg/ZmnsPMKgjw" target="_blank" className="flex items-center justify-center w-8 h-8 bg-white rounded-lg">
+                    <Image src="/instagram.svg" alt="instagram" width="17" height="17" />
+                    </a>
+                    <a href="https://www.linkedin.com/company/zkscore" target="_blank" className="flex items-center justify-center w-8 h-8 bg-white rounded-lg">
+                    <Image src="/linkedin.svg" alt="linkedin" width="17" height="17" />
+                    </a>
+                <a href="https://x.com/buildonzks" target="_blank" className="flex items-center justify-center w-8 h-8 bg-white rounded-lg">
+                    <Image src="/twitter.svg" alt="twitter" width="12" height="12" />
+                    </a>
                   </div>
                 </div>
               </div>

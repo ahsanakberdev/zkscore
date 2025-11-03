@@ -209,7 +209,7 @@ const faqs = [
   {
     title: "How are scores verified and stored on the blockchain?",
     description:
-      "We use a hybrid system: *On-chain* (total score stored in ScoreRegistry smart contract, syncs every 72 hours, cryptographically verified on the blockchain) and *Off-chain* (detailed breakdowns, real-time updates, historical data). This combines blockchain trustlessness with database speed. Verify your score anytime via 'View on Explorer' on your dashboard",
+      "We use a hybrid system: On-chain (total score stored in ScoreRegistry smart contract, syncs every 72 hours, cryptographically verified on the blockchain) and Off-chain (detailed breakdowns, real-time updates, historical data). This combines blockchain trustlessness with database speed. Verify your score anytime via 'View on Explorer' on your dashboard",
   },
   {
     title: "What are Achievements and how do I earn them?",
@@ -219,7 +219,7 @@ const faqs = [
   {
     title: "Can I transfer or sell my .zks identity?",
     description:
-      "Yes, but only *before activating scoring*. After minting, your .zks name can be traded like any NFT. However, once you activate scoring (by signing in and building your Trust Score), it becomes a Soulbound Token (SBT) and cannot be transferred or sold. This ensures your reputation remains authentic and prevents fraud",
+      "Yes, but only before activating scoring. After minting, your .zks name can be traded like any NFT. However, once you activate scoring (by signing in and building your Trust Score), it becomes a Soulbound Token (SBT) and cannot be transferred or sold. This ensures your reputation remains authentic and prevents fraud",
   },
   {
     title: "What happens if my .zks identity expires?",
@@ -229,7 +229,7 @@ const faqs = [
   {
     title: "Is my data private and secure on ZKScore?",
     description:
-      "Yes! Privacy features include zero-knowledge proofs (prove reputation without revealing details), wallet-based authentication (no email/password needed), and selective disclosure (choose what to share). Security: audited smart contracts, open-source code, non-custodial, GDPR compliant. *Public: .zks name, on-chain score, wallet address. **Private*: score breakdowns, profile info, email (encrypted).",
+      "Yes! Privacy features include zero-knowledge proofs (prove reputation without revealing details), wallet-based authentication (no email/password needed), and selective disclosure (choose what to share). Security: audited smart contracts, open-source code, non-custodial, GDPR compliant. Public: .zks name, on-chain score, wallet address. Private: score breakdowns, profile info, email (encrypted).",
   },
 ];
 
@@ -341,6 +341,14 @@ if (userScore.creditRating > 700) {
               >
                 FAQ
               </a>
+              <a
+                href="https://fresh-dashboard-zeta.vercel.app/dashboard"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border border-[#ffffff10] bg-white hover:bg-white/10 hover:text-white backdrop-blur-xl py-2 px-6 rounded-lg font-medium inline-block transition-all duration-300"
+              >
+                Launch App
+              </a>
             </motion.nav>
 
             {/* Mobile Menu Button */}
@@ -398,6 +406,14 @@ if (userScore.creditRating > 700) {
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     FAQ
+                  </a>
+                  <a
+                    href="https://fresh-dashboard-zeta.vercel.app/dashboard"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full border border-[#ffffff10] bg-white hover:bg-white/10 hover:text-white backdrop-blur-xl py-2 px-4 rounded-lg font-medium inline-block transition-all"
+                  >
+                    Launch App
                   </a>
                 </nav>
               </motion.div>
@@ -878,72 +894,69 @@ if (userScore.creditRating > 700) {
               ))}
             </motion.div>
             {/* Protocols Sec Left */}
-            <div className="grid lg:grid-cols-2 gap-6 md:gap-12 items-start px-6 md:px-10 py-6 md:py-14 border border-[#ffffff1a] rounded-3xl bg-[#ffffff0a]">
-              <motion.div
+            <motion.div
                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                className="">
-                <h2 className="text-[1.5rem] md:text-[1.5rem] lg:text-[2rem] text-white font-medium">
-                  {tabContent[activeTab].title}
-                </h2>
-                <p className="text-white opacity-70 mt-2 md:mt-4">
-                  {tabContent[activeTab].description}
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-y-7 gap-x-4 mt-10">
-                  {tabContent[activeTab].features.map((feature, index) => (
-                    <div key={index}>
-                      <h3 className="text-white font-medium text-base mb-2">
-                        {feature.title}
-                      </h3>
-                      <p className="text-white opacity-70 text-sm leading-relaxed">
-                        {feature.description}
-                      </p>
+                <div className="grid lg:grid-cols-2 gap-6 md:gap-12 items-start px-6 md:px-10 py-6 md:py-14 border border-[#ffffff1a] rounded-3xl bg-[#ffffff0a]">
+                  <div className="">
+                    <h2 className="text-[1.5rem] md:text-[1.5rem] lg:text-[2rem] text-white font-medium">
+                      {tabContent[activeTab].title}
+                    </h2>
+                    <p className="text-white opacity-70 mt-2 md:mt-4">
+                      {tabContent[activeTab].description}
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-y-7 gap-x-4 mt-10">
+                      {tabContent[activeTab].features.map((feature, index) => (
+                        <div key={index}>
+                          <h3 className="text-white font-medium text-base mb-2">
+                            {feature.title}
+                          </h3>
+                          <p className="text-white opacity-70 text-sm leading-relaxed">
+                            {feature.description}
+                          </p>
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  </div>
+                  {/* Protocols Sec Right */}
+                  {/* border border-[#ffffff1a] rounded-2xl bg-gradient-to-br from-[#0CFF850a] to-[#0000000a] p-6 flex justify-center items-center h-full */}
+                  {/* <div className="flex justify-center lg:justify-end"> */}
+                    <motion.div initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.6, delay: 0.3 }} className="flex justify-center lg:justify-end">
+                      <Image
+                        src={tabContent[activeTab].diagram}
+                        alt="Tabs"
+                        width="568"
+                        height="360"
+                        className="w-full h-auto md:h-[340px] object-contain object-right"
+                      />
+                    </motion.div>
+                  {/* </div> */}
                 </div>
-              </motion.div>
-              {/* Protocols Sec Right */}
-              {/* border border-[#ffffff1a] rounded-2xl bg-gradient-to-br from-[#0CFF850a] to-[#0000000a] p-6 flex justify-center items-center h-full */}
-              {/* <div className="flex justify-center lg:justify-end"> */}
-                <motion.div initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.6, delay: 0.3 }} className="flex justify-center lg:justify-end">
-                  <Image
-                    src={tabContent[activeTab].diagram}
-                    alt="Tabs"
-                    width="568"
-                    height="360"
-                    className="w-full h-auto md:h-[340px] object-contain object-right"
-                  />
-                </motion.div>
-              {/* </div> */}
-            </div>
+               </motion.div>
 
-            <div className="flex items-center justify-between px-3 md:px-10 py-4 mt-6 border border-[#ffffff1a] bg-[#ffffff0a] rounded-3xl flex-col md:flex-row gap-10 md:gap-2">
-              <motion.div initial={{ opacity: 0, y: 50 }}
+            <motion.div initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex items-center gap-6 justify-between md:justify-start w-full md:w-auto" >
-                  <h2 className="text-white text-[2rem] md:text-[3rem] lg:text-[64px] font-geistMono">$300</h2>{" "}
-                  <p className="text-white text-base md:text-xl font-medium">Starter Credits</p>
-                </motion.div>
-                <motion.div initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex items-center gap-2 md:gap-6 flex-col md:flex-row w-full md:w-auto" >
+              transition={{ duration: 0.6, delay: 0.3 }} className="flex items-center justify-between px-3 md:px-10 py-4 mt-6 border border-[#ffffff1a] bg-[#ffffff0a] rounded-3xl flex-col md:flex-row gap-10 md:gap-2">
+              <div className="flex items-center gap-6 justify-between md:justify-start w-full md:w-auto" >
+                <h2 className="text-white text-[2rem] md:text-[3rem] lg:text-[64px] font-geistMono">$300</h2>{" "}
+                <p className="text-white text-base md:text-xl font-medium">Starter Credits</p>
+              </div>
+              <div className="flex items-center gap-2 md:gap-6 flex-col md:flex-row w-full md:w-auto" >
                 <p className="text-white opacity-70">
                   No credit required
                 </p>
                 <button className="bg-[#0CFF85] hover:bg-[#0CFF85]/80 text-black font-semibold px-4 md:px-8 py-3 w-full md:w-auto rounded-lg transition-all duration-300 transform hover:scale-105">
-                    Join Waitlist
-                  </button>
-              </motion.div>
-            </div>
+                  Join Waitlist
+                </button>
+              </div>
+            </motion.div>
           </div>
         </section>
 
@@ -1249,13 +1262,11 @@ if (userScore.creditRating > 700) {
                   </div>
                   {/* social icons */}
                   <div className="flex items-center gap-3 mt-6">
-                    <a href="#" className="flex items-center justify-center w-8 h-8 bg-white rounded-lg">
-                    <Image src="/facebook.svg" alt="facebook" width="9" height="18" />
+                    <a href="https://t.me/zksnews#" target="_blank" className="flex items-center justify-center w-8 h-8 bg-white rounded-lg">
+                    <Image src="/telegram.svg" alt="telegram" width="17" height="14" />
                     </a>
                     <a href="https://discord.gg/ZmnsPMKgjw" target="_blank" className="flex items-center justify-center w-8 h-8 bg-white rounded-lg">
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M20.317 4.492c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.369-.444.85-.608 1.23a18.566 18.566 0 0 0-5.487 0 12.36 12.36 0 0 0-.617-1.23A.077.077 0 0 0 8.562 3c-1.714.29-3.354.8-4.885 1.491a.07.07 0 0 0-.032.027C.533 9.093-.32 13.555.099 17.961a.08.08 0 0 0 .031.055 20.03 20.03 0 0 0 5.993 2.98.078.078 0 0 0 .084-.026 13.83 13.83 0 0 0 1.226-1.963.074.074 0 0 0-.041-.104 13.201 13.201 0 0 1-1.872-.878.075.075 0 0 1-.008-.125c.126-.093.252-.19.372-.287a.075.075 0 0 1 .078-.01c3.927 1.764 8.18 1.764 12.061 0a.075.075 0 0 1 .079.009c.12.098.246.195.373.288a.075.075 0 0 1-.006.125c-.598.344-1.22.635-1.873.877a.075.075 0 0 0-.041.105c.36.687.772 1.341 1.225 1.962a.077.077 0 0 0 .084.028 19.963 19.963 0 0 0 6.002-2.981.076.076 0 0 0 .032-.054c.5-5.094-.838-9.52-3.549-13.442a.06.06 0 0 0-.031-.028zM8.02 15.278c-1.182 0-2.157-1.069-2.157-2.38 0-1.312.956-2.38 2.157-2.38 1.21 0 2.176 1.077 2.157 2.38 0 1.312-.956 2.38-2.157 2.38zm7.975 0c-1.183 0-2.157-1.069-2.157-2.38 0-1.312.955-2.38 2.157-2.38 1.21 0 2.176 1.077 2.157 2.38 0 1.312-.946 2.38-2.157 2.38z"/>
-                  </svg>
+                    <Image src="/discord.svg" alt="discord" width="16" height="12" />
                     </a>
                     <a href="https://www.linkedin.com/company/zkscore" target="_blank" className="flex items-center justify-center w-8 h-8 bg-white rounded-lg">
                     <Image src="/linkedin.svg" alt="linkedin" width="17" height="17" />

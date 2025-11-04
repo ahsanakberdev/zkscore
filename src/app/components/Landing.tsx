@@ -411,7 +411,7 @@ if (userScore.creditRating > 700) {
                     href="https://fresh-dashboard-zeta.vercel.app/dashboard"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full border border-[#ffffff10] bg-white hover:bg-white/10 hover:text-white backdrop-blur-xl py-2 px-4 rounded-lg font-medium inline-block transition-all"
+                    className="w-full border border-[#ffffff10] bg-white hover:bg-white/10 text-black hover:text-white backdrop-blur-xl py-2 px-4 rounded-lg font-medium inline-block transition-all"
                   >
                     Launch App
                   </a>
